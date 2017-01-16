@@ -13,11 +13,14 @@ System.config({
   },
 
   map: {
-    "angular": "github:angular/bower-angular@1.4.5",
+    "angular": "github:angular/bower-angular@1.6.1",
     "angular-animate": "github:angular/bower-angular-animate@1.4.5",
+    "angular-aria": "github:angular/bower-angular-aria@1.5.5",
     "angular-bootstrap": "github:angular-ui/bootstrap-bower@1.1.1",
     "angular-bootstrap-colorpicker": "github:buberdds/angular-bootstrap-colorpicker@3.0.19",
     "angular-bootstrap-switch": "github:JumpLink/angular-toggle-switch@0.5.5",
+    "angular-material": "github:angular/bower-material@1.1.0",
+    "angular-messages": "github:angular/bower-angular-messages@1.5.5",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.17",
     "angular-ui-select": "github:angular-ui/ui-select@0.13.2",
     "babel": "npm:babel-core@5.8.38",
@@ -26,10 +29,25 @@ System.config({
     "core-js": "npm:core-js@1.2.7",
     "font-awesome": "github:fortawesome/font-awesome@4.5.0",
     "github:angular-ui/ui-router@0.2.17": {
-      "angular": "github:angular/bower-angular@1.4.5"
+      "angular": "github:angular/bower-angular@1.6.1"
     },
     "github:angular/bower-angular-animate@1.4.5": {
-      "angular": "github:angular/bower-angular@1.4.5"
+      "angular": "github:angular/bower-angular@1.6.1"
+    },
+    "github:angular/bower-angular-animate@1.6.1": {
+      "angular": "github:angular/bower-angular@1.6.1"
+    },
+    "github:angular/bower-angular-aria@1.5.5": {
+      "angular": "github:angular/bower-angular@1.6.1"
+    },
+    "github:angular/bower-angular-messages@1.5.5": {
+      "angular": "github:angular/bower-angular@1.6.1"
+    },
+    "github:angular/bower-material@1.1.0": {
+      "angular": "github:angular/bower-angular@1.6.1",
+      "angular-animate": "github:angular/bower-angular-animate@1.6.1",
+      "angular-aria": "github:angular/bower-angular-aria@1.5.5",
+      "css": "github:systemjs/plugin-css@0.1.32"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"

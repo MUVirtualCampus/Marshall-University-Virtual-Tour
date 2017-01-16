@@ -18,20 +18,18 @@
   },
   "jspm": {
     "dependencies": {
-      "angular": "github:angular/bower-angular@1.4.5",
-      "angular-animate": "github:angular/bower-angular-animate@1.4.5",
+      "angular": "github:angular/bower-angular@1.5.5",
+      "angular-animate": "github:angular/bower-angular-animate@1.5.5",
+      "angular-aria": "github:angular/bower-angular-aria@1.5.5",
       "angular-bootstrap": "github:angular-ui/bootstrap-bower@1.1.1",
       "angular-bootstrap-colorpicker": "github:buberdds/angular-bootstrap-colorpicker@3.0.19",
       "angular-bootstrap-switch": "github:JumpLink/angular-toggle-switch@0.5.5",
+      "angular-material": "github:angular/bower-material@1.1.0",
+      "angular-messages": "github:angular/bower-angular-messages@1.5.5",
       "angular-ui-router": "github:angular-ui/ui-router@0.2.17",
       "angular-ui-select": "github:angular-ui/ui-select@0.13.2",
       "bootstrap-sass": "github:twbs/bootstrap-sass@3.3.6",
       "font-awesome": "github:fortawesome/font-awesome@4.5.0"
-    },
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.8.24",
-      "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "core-js": "npm:core-js@^1.1.4"
     }
   }
 }

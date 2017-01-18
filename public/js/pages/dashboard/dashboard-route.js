@@ -5,7 +5,7 @@ export default function dashboardRoute($stateProvider) {
 
   return $stateProvider
     .state('home.dashboard', {
-      url: '/dashboard',
+      url: 'dashboard',
       template: template,
       controller: dashboardController,
       controllerAs: 'ctrl'

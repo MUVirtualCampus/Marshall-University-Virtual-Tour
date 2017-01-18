@@ -29,6 +29,10 @@ var app = angular.module('mutour', dependencies)
   $compileProvider.debugInfoEnabled(true);
 }])
 
+.run(['$state', ($state) =>{
+   $state.transitionTo('home.dashboard');
+}])
+
 .run(['$rootScope', '$log', '$location', ($rootScope, $log, $location) => {
 
   $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {

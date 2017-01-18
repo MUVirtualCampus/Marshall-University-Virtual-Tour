@@ -5,4 +5,4 @@ import HomeController from './home-controller';
 
 export default angular.module('mutour.home', [])
   .config(route)
-  .controller('HomeController', HomeController)
+  .controller('HomeController', HomeController);

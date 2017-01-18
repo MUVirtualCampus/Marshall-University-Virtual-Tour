@@ -1,0 +1,1 @@
+module.exports = require("github:buberdds/angular-bootstrap-colorpicker@3.0.19/js/bootstrap-colorpicker-module.js");

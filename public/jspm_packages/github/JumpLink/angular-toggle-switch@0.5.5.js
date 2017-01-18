@@ -1,0 +1,1 @@
+module.exports = require("github:JumpLink/angular-toggle-switch@0.5.5/angular-toggle-switch.js");

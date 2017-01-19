@@ -10,6 +10,7 @@ import 'angular-bootstrap-colorpicker';
 
 import homeModule from './pages/home-module';
 import dashboardModule from './pages/dashboard/dashboard-module';
+import waecModule from './pages/waec/waec-module';
 
 let dependencies = [
   'ngMessages',
@@ -20,7 +21,8 @@ let dependencies = [
   'colorpicker.module',
   'ui.select',
   homeModule.name,
-  dashboardModule.name
+  dashboardModule.name,
+  waecModule.name
 ];
 
 var app = angular.module('mutour', dependencies)

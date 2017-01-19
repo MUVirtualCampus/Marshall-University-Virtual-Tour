@@ -1,0 +1,10 @@
+{
+    "alt-require": true,
+    "attr-no-duplication": true,
+    "attr-lowercase": true,
+    "doctype-first": false,
+    "id-unique": true,
+    "spec-char-escape": true,
+    "tag-pair": true,
+    "tagname-lowercase": true
+}

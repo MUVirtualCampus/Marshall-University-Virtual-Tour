@@ -17,8 +17,9 @@ export default class WaecController {
         document.getElementById('pano'), {
           position: fenway,
           pov: {
-            heading: 34,
-            pitch: 10
+            heading: 165,
+            pitch: 0,
+            zoom: 1
           }
         });
     map.setStreetView(panorama);

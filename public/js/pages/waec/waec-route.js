@@ -5,7 +5,7 @@ export default function waecRoute($stateProvider) {
 
   return $stateProvider
     .state('home.waec', {
-      url: 'waec',
+      url: 'tour/waec',
       template: template,
       controller: waecController,
       controllerAs: 'ctrl'

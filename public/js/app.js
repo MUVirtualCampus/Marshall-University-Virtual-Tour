@@ -10,6 +10,7 @@ import 'angular-bootstrap-colorpicker';
 
 import homeModule from './pages/home-module';
 import dashboardModule from './pages/dashboard/dashboard-module';
+import servicesModule from './app-services';
 import waecModule from './pages/waec/waec-module';
 
 let dependencies = [
@@ -22,6 +23,7 @@ let dependencies = [
   'ui.select',
   homeModule.name,
   dashboardModule.name,
+  servicesModule.name,
   waecModule.name
 ];
 

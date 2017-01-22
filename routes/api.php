@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::get('locations/{id?}', 'LocationsController@getLocations');
+Route::get('pictures/{id?}', 'PicturesController@getPictures');
+Route::get('picturelinks/{id?}', 'PictureLinksController@getPictureLinks');
+Route::get('placesofinterest/{id?}', 'PlacesOfInterestController@getPlacesOfInterest');

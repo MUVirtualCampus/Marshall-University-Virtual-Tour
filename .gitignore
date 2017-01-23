@@ -5,7 +5,6 @@
 /.idea
 Homestead.json
 Homestead.yaml
-.env
 
 /bootstrap/compiled.php
 /vendor
@@ -36,5 +35,3 @@ composer.phar
 /jspm_packages
 /public/jspm_packages
 
-
-.env

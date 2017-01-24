@@ -17,3 +17,14 @@ elixir((mix) => {
     mix.sass('app.scss')
        .webpack('app.js');
 });
+
+// including plugins
+var gulp = require('gulp')
+, uglify = require("gulp-uglify");
+
+// task
+gulp.task('minify-js', function () {
+    gulp.src(['./jspm_packages/*.js']) // path to your files
+    .pipe(uglify())
+    .pipe(gulp.dest('./build/minified_js'));
+});

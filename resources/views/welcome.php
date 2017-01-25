@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
 
-  <script src="./jspm_packages/system.js"></script>
   <script src="./config.js"></script>
   <script src="./build/minified_js/system.js"></script>
 

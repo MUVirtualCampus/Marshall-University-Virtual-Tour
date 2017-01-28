@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
-  <script src="./build/minified_js/system.js"></script>
+  <script src="./build/system.js"></script>
   <script src="./config.js"></script>
+  <script src="./build.js"></script>
 
   <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgRdOHKYe3gFn40_exRpN-lVx0FgB4Vyo">

@@ -13,12 +13,12 @@ require('laravel-elixir-vue-2');
  |
  */
 
-elixir((mix) => {
+/*elixir((mix) => {
     mix.sass('app.scss')
        .webpack('app.js');
-});
+});*/
 
-// including plugins
+/*// including plugins
 var gulp = require('gulp')
 , uglify = require("gulp-uglify");
 
@@ -27,4 +27,8 @@ gulp.task('minify-js', function () {
     gulp.src(['./jspm_packages/*.js']) // path to your files
     .pipe(uglify())
     .pipe(gulp.dest('./build/minified_js'));
+});*/
+
+elixir((mix) => {
+    mix.copy('./jspm_packages/*.js', './public/build');
 });

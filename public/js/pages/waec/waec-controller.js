@@ -7,24 +7,6 @@ export default class WaecController {
 
   }
 
-  initialize() {
-    var fenway = {lat: 42.345573, lng: -71.098326};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: fenway,
-      zoom: 14
-    });
-    var panorama = new google.maps.StreetViewPanorama(
-        document.getElementById('map'), {
-          position: fenway,
-          pov: {
-            heading: 165,
-            pitch: 0,
-            zoom: 1
-          }
-        });
-    map.setStreetView(panorama);
-    }
-
     initPano() {
         // Set up Street View and initially set it visible. Register the
         // custom panorama provider function. Set the StreetView to display

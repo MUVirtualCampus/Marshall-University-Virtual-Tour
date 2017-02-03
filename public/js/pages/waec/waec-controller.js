@@ -54,7 +54,11 @@ export default class WaecController {
               pano: 'waec_3_1',
               description: 'WAEC 3rd Floor'
             },
-            links: [],
+            links: [{
+              heading: 60,
+              description: 'Exit',
+              pano: 'test_image'
+            }],
             // The text for the copyright control.
             copyright: '',
             // The definition of the tiles for this panorama.
@@ -65,6 +69,29 @@ export default class WaecController {
               // tile set.
               centerHeading: 105,
               getTileUrl: () => {return 'http://res.cloudinary.com/muvirtualcampus/image/upload/c_scale,w_6600/v1486063191/PANO_20170202_125452_2_iu844f.jpg';}
+            }
+          };
+        } else if (pano === 'test_image') {
+          return {
+            location: {
+              pano: 'test_image',
+              description: 'WAEC 3rd Floor'
+            },
+            links: [{
+              heading: 195,
+              description: 'WAEC 3rd Floor',
+              pano: 'waec_3_1'
+            }],
+            // The text for the copyright control.
+            copyright: '',
+            // The definition of the tiles for this panorama.
+            tiles: {
+              tileSize: new google.maps.Size(1024, 512),
+              worldSize: new google.maps.Size(1024, 512),
+              // The heading in degrees at the origin of the panorama
+              // tile set.
+              centerHeading: 105,
+              getTileUrl: () => {return 'http://res.cloudinary.com/muvirtualcampus/image/upload/c_scale,w_6000/v1486063942/PANO_20170202_142958_1_xaua1r.jpg';}
             }
           };
         }

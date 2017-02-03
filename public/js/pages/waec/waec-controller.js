@@ -14,7 +14,7 @@ export default class WaecController {
       zoom: 14
     });
     var panorama = new google.maps.StreetViewPanorama(
-        document.getElementById('pano'), {
+        document.getElementById('map'), {
           position: fenway,
           pov: {
             heading: 165,
@@ -30,8 +30,8 @@ export default class WaecController {
         // custom panorama provider function. Set the StreetView to display
         // the custom panorama 'reception' which we check for below.
         var panorama = new google.maps.StreetViewPanorama(
-          document.getElementById('map'), {
-            pano: 'reception',
+          document.getElementById('pano'), {
+            pano: 'waec_3_1',
             visible: true,
             panoProvider: this.getCustomPanorama
         });
@@ -48,15 +48,15 @@ export default class WaecController {
       // Construct the appropriate StreetViewPanoramaData given
       // the passed pano IDs.
       getCustomPanorama(pano, zoom, tileX, tileY) {
-        if (pano === 'reception') {
+        if (pano === 'waec_3_1') {
           return {
             location: {
-              pano: 'reception',
-              description: 'Google Sydney - Reception'
+              pano: 'waec_3_1',
+              description: 'WAEC 3rd Floor'
             },
             links: [],
             // The text for the copyright control.
-            copyright: 'Imagery (c) 2010 Google',
+            copyright: '',
             // The definition of the tiles for this panorama.
             tiles: {
               tileSize: new google.maps.Size(1024, 512),

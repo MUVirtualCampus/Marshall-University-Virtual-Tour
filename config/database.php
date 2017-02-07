@@ -6,6 +6,7 @@ $host = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
 $database = substr($url["path"], 1);
+/* $environment = App::environment(); */
 
 return [
 
@@ -52,18 +53,39 @@ return [
     */
 
     'connections' => [
+    /*
+        this currently is broken, dont uncomment. Will eventually allow connection to change depending on environment
+        if (App::environment('local')
+        {*/
+            'pgsql' => array(
+                'driver'    =>  'pgsql',
+                'host'      =>  'localhost',
+                /*Change this to your computers name */
+                'database'  =>  'daniellewis',
+                /*Change this to your computers name */
+                'username'  =>  'daniellewis',
+                'password'  =>  '',
+                'charset'   =>  'utf8',
+                'prefix'    =>  '',
+                'schema'    =>  'public',
+            ),
 
-        'pgsql' => array(
-            'driver'    =>  'pgsql',
-            'host'      =>  $host,
-            'database'  =>  $database,
-            'username'  =>  $username,
-            'password'  =>  $password,
-            'charset'   =>  'utf8',
-            'prefix'    =>  '',
-            'schema'    =>  'public',
-        ),
+        /*}*/
 
+        /* This code allows the project to connect to Heroku's database
+        if (App::environment('production')
+        {
+            'pgsql' => array(
+                'driver'    =>  'pgsql',
+                'host'      =>  $host,
+                'database'  =>  $database,
+                'username'  =>  $username,
+                'password'  =>  $password,
+                'charset'   =>  'utf8',
+                'prefix'    =>  '',
+                'schema'    =>  'public',
+            ),
+        }*/
     ],
 
     /*

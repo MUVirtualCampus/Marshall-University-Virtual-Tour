@@ -13,7 +13,7 @@ class CreatePlacesOfInterestTable extends Migration
      */
     public function up()
     {
-        Schema::table('places_of_interest', function (Blueprint $table) {
+        Schema::create('places_of_interest', function (Blueprint $table) {
           $table->increments('place_of_interest_id');
           $table->integer('location_id')->unsigned();
           $table->string('description');

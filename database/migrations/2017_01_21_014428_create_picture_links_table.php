@@ -13,7 +13,7 @@ class CreatePictureLinksTable extends Migration
      */
     public function up()
     {
-        Schema::table('picture_links', function (Blueprint $table) {
+        Schema::create('picture_links', function (Blueprint $table) {
           $table->increments('picture_link_id');
           $table->integer('first_picture_id')->unsigned();
           $table->integer('second_picture_id')->unsigned();

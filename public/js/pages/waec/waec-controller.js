@@ -1,8 +1,12 @@
 export default class WaecController {
 
-  constructor($scope, $state) {
+  constructor($scope, $state, locationService, pictureService, pictureLinkService) {
     this.$scope = $scope;
     this.$state = $state;
+    this.locationService = locationService;
+    this.pictureService = pictureService;
+    this.pictureLinkService = pictureLinkService;
+    this.pictureLinks = pictureLinkService.getPictureLink(1);
     this.initPano();
 
   }
@@ -80,5 +84,5 @@ export default class WaecController {
       }
 
 }
-WaecController.$inject = ['$scope', '$state'];
+WaecController.$inject = ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService'];
 export default WaecController;

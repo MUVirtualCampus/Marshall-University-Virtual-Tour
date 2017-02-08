@@ -15,5 +15,5 @@ use Illuminate\Http\Request;
 
 Route::get('locations/{id?}', 'LocationsController@getLocations');
 Route::get('pictures/{id?}', 'PicturesController@getPictures');
-Route::get('picturelinks/{id?}', 'PictureLinksController@getPictureLinks');
+Route::get('picturelinks/{location_id?}', 'PictureLinksController@getPictureLinks');
 Route::get('placesofinterest/{id?}', 'PlacesOfInterestController@getPlacesOfInterest');

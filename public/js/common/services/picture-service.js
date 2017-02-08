@@ -12,7 +12,7 @@ export default class PictureService extends BaseService {
   }
 
   getPicture(id) {
-    this.$http.get('api/pictures/' + id).then((response) => {
+    this.$http.get('api/pictures/', {id:id}).then((response) => {
       return response;
     });
   }

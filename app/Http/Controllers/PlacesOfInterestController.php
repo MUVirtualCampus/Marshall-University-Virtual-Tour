@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PlacesOfInterest;
 
 class PlacesOfInterestController extends Controller
 {
@@ -10,14 +11,14 @@ class PlacesOfInterestController extends Controller
   {
     if($id != null)
     {
-      $places_of_interest = App\PlacesOfInterest::where('place_of_interest_id', $id)
+      $places_of_interest = PlacesOfInterest::where('place_of_interest_id', $id)
               ->get();
 
               return $places_of_interest;
     }
     else
     {
-      $places_of_interest = App\PlacesOfInterest::all();
+      $places_of_interest = PlacesOfInterest::all();
       return $places_of_interest;
     }
   }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pictures;
 
 class PicturesController extends Controller
 {
@@ -10,14 +11,14 @@ class PicturesController extends Controller
   {
     if($id != null)
     {
-      $pictures = App\Pictures::where('picture_id', $id)
+      $pictures = Pictures::where('picture_id', $id)
               ->get();
 
               return $pictures;
     }
     else
     {
-      $pictures = App\Pictures::all();
+      $pictures = Pictures::all();
       return $pictures;
     }
   }

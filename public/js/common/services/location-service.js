@@ -12,7 +12,7 @@ export default class LocationService extends BaseService {
   }
 
   getLocation(id) {
-    this.$http.get('api/locations/' + id).then((response) => {
+    this.$http.get('api/locations/', {id: id}).then((response) => {
       return response;
     });
   }

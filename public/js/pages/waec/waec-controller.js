@@ -1,12 +1,34 @@
 export default class WaecController {
+  static resolve() {
+    return {
+      pictures: ['$stateParams', 'pictureService', ($stateParams, pictureService) => {
+        return pictureService.getPictures(1).then((results) => {
+            return results.data;
+          });
+        }
 
-  constructor($scope, $state, locationService, pictureService, pictureLinkService) {
+      ],
+      pictureLinks: ['$stateParams', 'pictureLinkService', ($stateParams, pictureLinkService) => {
+        return pictureLinkService.getPictureLinks(1).then((results) => {
+            return results.data;
+          });
+        }
+      ]
+    }
+  }
+
+  static get $inject(){
+    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'pictures', 'pictureLinks'];
+  }
+
+  constructor($scope, $state, locationService, pictureService, pictureLinkService, pictures, pictureLinks) {
     this.$scope = $scope;
     this.$state = $state;
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
-    this.pictureLinks = pictureLinkService.getPictureLink(1);
+    this.pictures = pictures;
+    this.pictureLinks = pictureLinks;
     this.initPano();
 
   }
@@ -84,5 +106,5 @@ export default class WaecController {
       }
 
 }
-WaecController.$inject = ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService'];
-export default WaecController;
+//WaecController.$inject = ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'pictures', 'pictureLinks'];
+//export default WaecController;

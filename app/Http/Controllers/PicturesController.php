@@ -7,18 +7,18 @@ use App\Pictures;
 
 class PicturesController extends Controller
 {
-  public function getPictures($id = null)
+  public function getPictures($location_id = null)
   {
-    if($id != null)
+    if($location_id != null)
     {
-      $pictures = Pictures::where('picture_id', $id)
+      $pictures = Pictures::where('location_id', $location_id)
               ->get();
 
               return $pictures;
     }
     else
     {
-      $pictures = Pictures::all();
+      $pictures = PictureLinks::all();
       return $pictures;
     }
   }

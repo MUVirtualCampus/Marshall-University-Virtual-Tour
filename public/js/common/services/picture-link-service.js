@@ -11,10 +11,8 @@ export default class PictureLinkService extends BaseService {
     //this.baseUrl = $location.$$absUrl
   }
 
-  getPictureLink(location_id) {
-    this.$http.get('api/picturelinks/' + location_id).then((response) => {
-      return response;
-    });
+  getPictureLinks(location_id) {
+    return this.$http.get('api/picturelinks/' + location_id);
   }
 
 }

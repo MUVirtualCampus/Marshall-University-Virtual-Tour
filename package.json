@@ -5,6 +5,7 @@
     "dev": "gulp watch"
   },
   "devDependencies": {
+    "babel-eslint": "7.1.0",
     "bootstrap-sass": "^3.3.7",
     "buble": "^0.15.2",
     "css-loader": "^0.26.1",
@@ -32,6 +33,7 @@
       "angular-bootstrap": "github:angular-ui/bootstrap-bower@1.1.1",
       "angular-bootstrap-colorpicker": "github:buberdds/angular-bootstrap-colorpicker@3.0.19",
       "angular-bootstrap-switch": "github:JumpLink/angular-toggle-switch@0.5.5",
+      "angular-loading-bar": "github:chieffancypants/angular-loading-bar@0.8.0",
       "angular-material": "github:angular/bower-material@1.1.0",
       "angular-messages": "github:angular/bower-angular-messages@1.5.5",
       "angular-ui-router": "github:angular-ui/ui-router@0.2.17",

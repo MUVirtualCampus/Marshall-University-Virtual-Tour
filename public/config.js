@@ -19,6 +19,7 @@ System.config({
     "angular-bootstrap": "github:angular-ui/bootstrap-bower@1.1.1",
     "angular-bootstrap-colorpicker": "github:buberdds/angular-bootstrap-colorpicker@3.0.19",
     "angular-bootstrap-switch": "github:JumpLink/angular-toggle-switch@0.5.5",
+    "angular-loading-bar": "github:chieffancypants/angular-loading-bar@0.8.0",
     "angular-material": "github:angular/bower-material@1.1.0",
     "angular-messages": "github:angular/bower-angular-messages@1.5.5",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.17",
@@ -48,6 +49,10 @@ System.config({
       "angular": "github:angular/bower-angular@1.5.5",
       "angular-animate": "github:angular/bower-angular-animate@1.5.5",
       "angular-aria": "github:angular/bower-angular-aria@1.5.5",
+      "css": "github:systemjs/plugin-css@0.1.32"
+    },
+    "github:chieffancypants/angular-loading-bar@0.8.0": {
+      "angular": "github:angular/bower-angular@1.5.5",
       "css": "github:systemjs/plugin-css@0.1.32"
     },
     "github:jspm/nodelibs-assert@0.1.0": {

@@ -1,4 +1,5 @@
 import BaseService from './base-service.js';
+import Promise from 'bluebird';
 
 export default class PictureService extends BaseService {
   static get $inject() {
@@ -11,10 +12,8 @@ export default class PictureService extends BaseService {
     //this.baseUrl = $location.$$absUrl
   }
 
-  getPicture(id) {
-    this.$http.get('api/pictures/', {id:id}).then((response) => {
-      return response;
-    });
+  getPictures(location_id) {
+    return this.$http.get('api/pictures/' + location_id);
   }
 
 }

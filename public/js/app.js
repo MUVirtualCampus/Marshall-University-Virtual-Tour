@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import 'angular-messages';
 import 'angular-animate';
+import 'angular-loading-bar';
 import 'angular-material';
 import 'angular-ui-router';
 import 'angular-bootstrap';
@@ -14,6 +15,7 @@ import servicesModule from './app-services';
 import waecModule from './pages/waec/waec-module';
 
 let dependencies = [
+  'angular-loading-bar',
   'ngMessages',
   'ngAnimate',
   'ngMaterial',

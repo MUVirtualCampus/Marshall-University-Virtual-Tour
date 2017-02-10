@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pictures;
 
 class PicturesController extends Controller
 {
-  public function getPictures($id = null)
+  public function getPictures($location_id = null)
   {
-    if($id != null)
+    if($location_id != null)
     {
-      $pictures = App\Pictures::where('picture_id', $id)
+      $pictures = Pictures::where('location_id', $location_id)
               ->get();
 
               return $pictures;
     }
     else
     {
-      $pictures = App\Pictures::all();
+      $pictures = PictureLinks::all();
       return $pictures;
     }
   }

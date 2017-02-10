@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Locations;
 
 class LocationsController extends Controller
 {
@@ -10,14 +11,14 @@ class LocationsController extends Controller
     {
       if($id != null)
       {
-        $locations = App\Locations::where('location_id', $id)
+        $locations = Locations::where('location_id', $id)
                 ->get();
 
                 return $locations;
       }
       else
       {
-        $locations = App\Locations::all();
+        $locations = Locations::all();
         return $locations;
       }
     }

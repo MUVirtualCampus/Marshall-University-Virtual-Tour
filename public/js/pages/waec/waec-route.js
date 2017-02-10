@@ -5,10 +5,11 @@ export default function waecRoute($stateProvider) {
 
   return $stateProvider
     .state('home.waec', {
-      url: 'tour/waec',
+      url: 'tour/waec/{floor:[1-4]{1}}',
       template: template,
       controller: waecController,
-      controllerAs: 'ctrl'
+      controllerAs: 'ctrl',
+      resolve: waecController.resolve()
     });
 }
 

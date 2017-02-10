@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class WaecController {
   static resolve() {
     return {
@@ -105,6 +107,20 @@ export default class WaecController {
         }
       }
 
+      setLinks(pictureId) {
+        let links = [];
+
+        _.forEach(this.pictureLinks), (item) => {
+          if(item.firstPictureId === pictureId) {
+            links.push(
+              _.find(this.pictures, (picture) => {
+                return picture.pictureId === item.secondPictureId;
+              })
+            );
+          }
+        }
+
+        return links;
+      }
+
 }
-//WaecController.$inject = ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'pictures', 'pictureLinks'];
-//export default WaecController;

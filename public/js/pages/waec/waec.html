@@ -11,9 +11,9 @@
               <h1 class="md-toolbar-tools">Quick Jump</h1>
             </md-toolbar>
             <md-content layout-padding>
-              <p>
-                The drop downs go here
-              </p>
+              <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()">
+                <md-option ng-value="floor" ng-repeat="floor in ctrl.floors">Floor {{floor}}</md-option>
+              </md-select>
             </md-content>
 
           </md-sidenav>

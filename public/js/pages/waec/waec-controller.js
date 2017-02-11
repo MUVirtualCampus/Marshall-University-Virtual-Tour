@@ -66,7 +66,7 @@ export default class WaecController {
             worldSize: new google.maps.Size(1024, 512),
             // The heading in degrees at the origin of the panorama
             // tile set.
-            centerHeading: picture.heading,
+            centerHeading: 0,//picture.heading,
             getTileUrl: () => { return picture.url; }
           }
         };

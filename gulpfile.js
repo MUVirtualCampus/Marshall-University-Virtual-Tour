@@ -32,3 +32,7 @@ gulp.task('minify-js', function () {
 elixir((mix) => {
     mix.copy('./jspm_packages/*.js', './public/build');
 });
+
+elixir((mix) => {
+    mix.sass('app.scss');
+});

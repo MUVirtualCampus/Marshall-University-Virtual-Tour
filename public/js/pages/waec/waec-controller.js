@@ -31,6 +31,8 @@ export default class WaecController {
     this.pictureLinkService = pictureLinkService;
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
+    this.floors = this.initFloors();
+    this.floor = 3;
     this.initPano(pictures[0]);
 
   }
@@ -84,6 +86,20 @@ export default class WaecController {
           }
         });
         return links;
+      }
+
+      initFloors() {
+        //TODO: Change this. This is just a placeholder for now until we dynamically add floors
+        let floorArray = [];
+        for(let i = 1; i <= 4; i++) {
+          floorArray.push(i);
+        }
+        return floorArray;
+      }
+
+      switchFloors() {
+        //TODO: Replace with code to change floors
+        console.log("Floor changed!");
       }
 
 }

@@ -1,12 +1,12 @@
 <?php
 
-/*$url = parse_url(getenv("DATABASE_URL"));
+$url = parse_url(getenv("DATABASE_URL"));
 
 $host = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
 $database = substr($url["path"], 1);
-/* $environment = App::environment(); */
+//$environment = App::environment();
 
 return [
 
@@ -56,25 +56,25 @@ return [
     /*
         this currently is broken, dont uncomment. Will eventually allow connection to change depending on environment
         if (App::environment('local')
-        {*/
+        {
             'pgsql' => array(
                 'driver'    =>  'pgsql',
-                'host'      =>  'ec2-54-221-255-153.compute-1.amazonaws.com',
-                /*Change this to your computers name */
-                'database'  =>  'ddfb1fpjlpb2dg',
-                /*Change this to your computers name */
-                'username'  =>  'nlxlyssxzjuuhn',
-                'password'  =>  '54f0c7bf746291a75bebbe3c60bca44bca41f4707333f2b425929d0857589943',
+                'host'      =>  'localhost',
+                //Change this to your computers name
+                'database'  =>  'muvt',
+                //Change this to your computers name
+                'username'  =>  'muvt',
+                'password'  =>  '',
                 'charset'   =>  'utf8',
                 'prefix'    =>  '',
                 'schema'    =>  'public',
             ),
 
-        /*}*/
+        }*/
 
         /* This code allows the project to connect to Heroku's database
         if (App::environment('production')
-        {
+        {*/
             'pgsql' => array(
                 'driver'    =>  'pgsql',
                 'host'      =>  $host,
@@ -85,7 +85,7 @@ return [
                 'prefix'    =>  '',
                 'schema'    =>  'public',
             ),
-        }*/
+        //}
     ],
 
     /*

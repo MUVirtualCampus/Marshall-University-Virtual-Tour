@@ -3,9 +3,7 @@ export default class BaseService {
     this.$http = $http;
   }
 
-  getAll(types) {
-    this.$http.get('api/' + types).then((response) => {
-      return response;
-    });
+  getAll(type) {
+    return this.$http.get('api/' + type);
   }
 }

@@ -1,17 +1,28 @@
 import _ from 'lodash';
 
-export default class WaecController {
+export default class TourController {
   static resolve() {
     return {
-      pictures: ['$stateParams', 'pictureService', ($stateParams, pictureService) => {
-        return pictureService.getPictures(1).then((results) => {
+      locations: ['$stateParams', 'locationService', ($stateParams, locationService) => {
+        return locationService.getAll('locations').then((results) => {
             return results.data;
           });
         }
 
       ],
-      pictureLinks: ['$stateParams', 'pictureLinkService', ($stateParams, pictureLinkService) => {
-        return pictureLinkService.getPictureLinks(1).then((results) => {
+      location: ['$stateParams', 'locations', ($stateParams, locations) => {
+        return _.find(locations, item => item.name === $stateParams.name);
+        }
+      ],
+      pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {
+        return pictureService.getPictures(location.location_id).then((results) => {
+            return results.data;
+          });
+        }
+
+      ],
+      pictureLinks: ['$stateParams', 'pictureLinkService', 'location', ($stateParams, pictureLinkService, location) => {
+        return pictureLinkService.getPictureLinks(location.location_id).then((results) => {
             return results.data;
           });
         }
@@ -20,15 +31,17 @@ export default class WaecController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'pictures', 'pictureLinks'];
+    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks'];
   }
 
-  constructor($scope, $state, locationService, pictureService, pictureLinkService, pictures, pictureLinks) {
+  constructor($scope, $state, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks) {
     this.$scope = $scope;
     this.$state = $state;
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
+    this.locations = locations;
+    this.location = location;
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
     this.floors = this.initFloors();
@@ -99,7 +112,16 @@ export default class WaecController {
 
       switchFloors() {
         //TODO: Replace with code to change floors
-        console.log("Floor changed!");
+        console.log('Floor changed!');
+      }
+
+      switchLocations() {
+        //TODO: Replace with code to change locations
+        console.log('Location changed!');
+      }
+
+      showFloors() {
+        return this.location.floors > 0;
       }
 
 }

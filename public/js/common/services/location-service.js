@@ -11,10 +11,8 @@ export default class LocationService extends BaseService {
     //this.baseUrl = $location.$$absUrl
   }
 
-  getLocation(id) {
-    this.$http.get('api/locations/', {id: id}).then((response) => {
-      return response;
-    });
+  getLocations(id) {
+    return this.$http.get('api/locations/' + id);
   }
 
 }

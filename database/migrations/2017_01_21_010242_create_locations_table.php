@@ -17,6 +17,7 @@ class CreateLocationsTable extends Migration
           $table->increments('location_id');
           $table->string('name');
           $table->string('description');
+          $table->integer('floors')->default(0);
         });
     }
 

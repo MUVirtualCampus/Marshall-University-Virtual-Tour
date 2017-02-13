@@ -12,7 +12,7 @@ import 'angular-bootstrap-colorpicker';
 import homeModule from './pages/home-module';
 import dashboardModule from './pages/dashboard/dashboard-module';
 import servicesModule from './app-services';
-import waecModule from './pages/waec/waec-module';
+import tourModule from './pages/tour/tour-module';
 
 let dependencies = [
   'angular-loading-bar',
@@ -26,13 +26,19 @@ let dependencies = [
   homeModule.name,
   dashboardModule.name,
   servicesModule.name,
-  waecModule.name
+  tourModule.name
 ];
 
 var app = angular.module('mutour', dependencies)
 
 .config(['$compileProvider', ($compileProvider) => {
   $compileProvider.debugInfoEnabled(true);
+}])
+
+.config(['$mdThemingProvider', ($mdThemingProvider) => {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('green')
+    .accentPalette('orange');
 }])
 
 .run(['$state', ($state) =>{

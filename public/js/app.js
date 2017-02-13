@@ -35,6 +35,12 @@ var app = angular.module('mutour', dependencies)
   $compileProvider.debugInfoEnabled(true);
 }])
 
+.config(['$mdThemingProvider', ($mdThemingProvider) => {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('green')
+    .accentPalette('orange');
+}])
+
 .run(['$state', ($state) =>{
    $state.transitionTo('home.dashboard');
 }])

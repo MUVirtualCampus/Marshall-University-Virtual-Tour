@@ -11,6 +11,6 @@ class seed_pictures_table extends Seeder
      */
     public function run()
     {
-        DB::table('picture_links')->insert(['picture_id' => increments,'location_id' => 1, 'floor' => 1, 'pano' => 'sample pano', 'description' => 'sample description', 'heading' => 1, 'url' => 'sample url', 'url' => 'sample info',]);
+        DB::table('picture_links')->insert(['picture_id' => increments,'location_id' => 1, 'floor' => 3, 'description' => 'WAEC 3rd Floor', 'pano' => 'waec_3_1', 'heading' => 0, 'url' => 'sample url', 'url' => 'sample info',]);
     }
 }

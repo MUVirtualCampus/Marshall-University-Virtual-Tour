@@ -11,11 +11,11 @@
               <h1 class="md-toolbar-tools">Quick Jump</h1>
             </md-toolbar>
             <md-content layout-padding>
-              <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()" ng-if="ctrl.showFloors()">
-                <md-option ng-value="floor" ng-repeat="floor in ctrl.floors">Floor {{floor}}</md-option>
-              </md-select>
               <md-select ng-model="ctrl.location" ng-change="ctrl.switchLocations()">
                 <md-option ng-value="location" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
+              </md-select>
+              <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()" ng-if="ctrl.showFloors()">
+                <md-option ng-value="floor" ng-repeat="floor in ctrl.floors">Floor {{floor}}</md-option>
               </md-select>
             </md-content>
 

@@ -20,7 +20,7 @@ Homestead.yaml
 
 composer.phar
 
-
+.env
 .DS_Store
 
 
@@ -35,4 +35,3 @@ composer.phar
 /node_modules
 /jspm_packages
 /public/jspm_packages
-

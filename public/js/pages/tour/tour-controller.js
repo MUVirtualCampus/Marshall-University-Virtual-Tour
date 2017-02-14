@@ -56,10 +56,10 @@ export default class TourController {
         // the custom panorama 'reception' which we check for below.
         var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('pano'), {
-            pano: 'waec_3_1',
+            pano: this.pictures[0].pano,
             visible: true,
             panoProvider: () => {return this.getCustomPanorama(panorama.pano);}
-        });
+        });debugger;
       }
 
 
@@ -81,7 +81,7 @@ export default class TourController {
             worldSize: new google.maps.Size(1024, 512),
             // The heading in degrees at the origin of the panorama
             // tile set.
-            centerHeading: 0,//picture.heading,
+            centerHeading: picture.heading,
             getTileUrl: () => { return picture.url; }
           }
         };
@@ -102,9 +102,8 @@ export default class TourController {
       }
 
       initFloors() {
-        //TODO: Change this. This is just a placeholder for now until we dynamically add floors
         let floorArray = [];
-        for(let i = 1; i <= 4; i++) {
+        for(let i = 1; i <= this.location.floors; i++) {
           floorArray.push(i);
         }
         return floorArray;

@@ -56,10 +56,10 @@ export default class TourController {
         // the custom panorama 'reception' which we check for below.
         var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('pano'), {
-            pano: this.pictures[0].pano,
+            pano: picture.pano,
             visible: true,
             panoProvider: () => {return this.getCustomPanorama(panorama.pano);}
-        });debugger;
+        });
       }
 
 
@@ -110,8 +110,12 @@ export default class TourController {
       }
 
       switchFloors() {
-        //TODO: Replace with code to change floors
-        console.log('Floor changed!');
+        let newPicture = _.find(this.pictures, picture => {
+          return (picture.floor === this.floor && picture.is_landing)
+        });
+        this.picture = newPicture;
+        this.initPano(this.picture);
+
       }
 
       switchLocations() {

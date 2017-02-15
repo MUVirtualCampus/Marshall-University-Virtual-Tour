@@ -46,7 +46,7 @@ export default class TourController {
     this.pictureLinks = pictureLinks;
     this.floors = this.initFloors();
     this.floor = 3;
-    this.initPano(pictures[0]);
+    this.initPano(this.findLandingPicture());
 
   }
 
@@ -54,14 +54,13 @@ export default class TourController {
         // Set up Street View and initially set it visible. Register the
         // custom panorama provider function. Set the StreetView to display
         // the custom panorama 'reception' which we check for below.
-        var panorama = new google.maps.StreetViewPanorama(
+        this.panorama = new google.maps.StreetViewPanorama(
           document.getElementById('pano'), {
-            pano: this.pictures[0].pano,
             visible: true,
-            panoProvider: () => {return this.getCustomPanorama(panorama.pano);}
-        });debugger;
+            panoProvider: () => {return this.getCustomPanorama(this.panorama.pano);},
+            pano: picture.pano
+        });
       }
-
 
       // Construct the appropriate StreetViewPanoramaData given
       // the passed picture.
@@ -110,8 +109,10 @@ export default class TourController {
       }
 
       switchFloors() {
-        //TODO: Replace with code to change floors
-        console.log('Floor changed!');
+        let newPicture = this.findLandingPicture();
+
+        this.panorama.setPano(newPicture.pano);
+
       }
 
       switchLocations() {
@@ -121,6 +122,14 @@ export default class TourController {
 
       showFloors() {
         return this.location.floors > 0;
+      }
+
+      findLandingPicture() {
+        let landing = _.find(this.pictures, picture => {
+          return (picture.floor === this.floor && picture.is_landing)
+        });
+
+        return landing;
       }
 
 }

@@ -5,7 +5,7 @@ export default function tourRoute($stateProvider) {
 
   return $stateProvider
     .state('home.tour', {
-      url: 'tour/{name}/{floor:[1-4]{1}}',
+      url: 'tour/{name}',
       template: template,
       controller: tourController,
       controllerAs: 'ctrl',

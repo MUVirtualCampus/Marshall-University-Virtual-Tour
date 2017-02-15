@@ -56,10 +56,11 @@ export default class TourController {
         // the custom panorama 'reception' which we check for below.
         this.panorama = new google.maps.StreetViewPanorama(
           document.getElementById('pano'), {
-            visible: true,
+            visible: false,
             panoProvider: () => {return this.getCustomPanorama(this.panorama.pano);},
             pano: picture.pano
         });
+        this.panorama.setVisible(true);
       }
 
       // Construct the appropriate StreetViewPanoramaData given

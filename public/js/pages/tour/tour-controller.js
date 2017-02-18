@@ -45,8 +45,9 @@ export default class TourController {
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
     this.floors = this.initFloors();
-    this.floor = 3;
+    this.floor = 4;
     this.initPano(this.findLandingPicture());
+    this.preloadImages();
 
   }
 
@@ -127,10 +128,21 @@ export default class TourController {
 
       findLandingPicture() {
         let landing = _.find(this.pictures, picture => {
-          return (picture.floor === this.floor && picture.is_landing)
+          return (picture.floor === this.floor && picture.is_landing == 1)
         });
 
         return landing;
+      }
+
+      preloadImages() {
+        if(this.floor === 4 || this.floor === 1) {
+          _.forEach(this.pictures, picture => {
+            if (picture.floor === this.floor) {
+              let image = new Image();
+              image.src = picture.url;
+            }
+          });
+        }
       }
 
 }

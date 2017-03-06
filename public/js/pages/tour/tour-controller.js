@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import poiModalTemplate from './poi-modal.html!text';
 
 export default class TourController {
   static resolve() {
@@ -26,17 +27,24 @@ export default class TourController {
             return results.data;
           });
         }
+      ],
+      placesOfInterest: ['$stateParams', 'placeOfInterestService', 'location', ($stateParams, placeOfInterestService, location) => {
+        return placeOfInterestService.getPlacesOfInterest(location.location_id).then((results) => {
+            return results.data;
+          });
+        }
       ]
     }
   }
 
   static get $inject(){
-    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks'];
+    return ['$scope', '$state', '$mdDialog', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks) {
+  constructor($scope, $state, $mdDialog, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
+    this.$modal = $mdDialog;
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
@@ -44,10 +52,10 @@ export default class TourController {
     this.location = location;
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
+    this.placesOfInterest = placesOfInterest;
     this.floors = this.initFloors();
-    this.floor = 4;
+    this.floor = 1;
     this.initPano(this.findLandingPicture());
-    this.preloadImages();
 
   }
 
@@ -134,15 +142,20 @@ export default class TourController {
         return landing;
       }
 
-      preloadImages() {
-        if(this.floor === 4 || this.floor === 1) {
-          _.forEach(this.pictures, picture => {
-            if (picture.floor === this.floor) {
-              let image = new Image();
-              image.src = picture.url;
-            }
-          });
-        }
+      openPOIModal(schedule) {
+        this.$modal.show({
+          template: poiModalTemplate,
+          controller: 'POIModalController as ctrl',
+          clickOutsideToClose:true,
+          bindToController: false,
+          resolve: {
+            placesOfInterest: () => this.placesOfInterest,
+            locations: () => this.locations,
+            location: () => this.location
+          }
+        })
+            .then((poi) => this.panorama.setPano(poi.pano));
+
       }
 
 }

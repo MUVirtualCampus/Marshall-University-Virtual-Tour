@@ -17,7 +17,9 @@
               <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()" ng-if="ctrl.showFloors()" aria-label="tourfloor">
                 <md-option ng-value="floor" ng-repeat="floor in ctrl.floors">Floor {{floor}}</md-option>
               </md-select>
-              <md-button class="md-raised md-primary" ng-click="ctrl.openPOIModal()">Warp</md-button>
+              <div style="text-align:center">
+                <md-button style="width:40%" class="md-raised md-primary" ng-click="ctrl.openPOIModal()">Warp</md-button>
+              </div>
             </md-content>
 
           </md-sidenav>

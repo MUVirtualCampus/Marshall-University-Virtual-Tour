@@ -154,8 +154,18 @@ export default class TourController {
             location: () => this.location
           }
         })
-            .then((poi) => this.panorama.setPano(poi.pano));
+            .then((poi) => this.warp(poi));
 
+      }
+
+      warp(placeOfInterest){
+        //TODO: Change this to make it work with locations other than the current one
+        let picture = _.find(this.pictures, picture => {
+            return picture.picture_id === placeOfInterest.picture_id;
+          });
+
+        this.floor = picture.floor;
+        this.panorama.setPano(picture.pano);
       }
 
 }

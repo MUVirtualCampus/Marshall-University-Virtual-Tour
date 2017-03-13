@@ -1,0 +1,40 @@
+<md-dialog aria-label="modal" style="width:45%">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+        <h3>Warp To:</h3>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="modal-body">
+      <form name="poiForm" novalidate show-validation>
+
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="form-group col-xs-6">
+              <label for="location">Location</label>
+                <md-select ng-model="ctrl.location" aria-label="locationlabel">
+                  <md-option ng-value="location" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
+                </md-select>
+            </div>
+
+            <div class="form-group col-xs-6">
+              <label for="placeOfInterest">Place of Interest</label>
+                <md-select ng-model="ctrl.placeOfInterest" aria-label="poilabel">
+                  <md-option ng-value="placeOfInterest" ng-repeat="placeOfInterest in ctrl.placesOfInterest">{{placeOfInterest.description}}</md-option>
+                </md-select>
+            </div>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-disabled="ctrl.formNotValid()" ng-click="ctrl.transitionTo()">Go</md-button>
+    <md-button class="md-warn" ng-click="ctrl.cancel()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

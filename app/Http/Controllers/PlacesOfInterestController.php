@@ -7,11 +7,11 @@ use App\PlacesOfInterest;
 
 class PlacesOfInterestController extends Controller
 {
-  public function getPlacesOfInterest($id = null)
+  public function getPlacesOfInterest($location_id = null)
   {
-    if($id != null)
+    if($location_id != null)
     {
-      $places_of_interest = PlacesOfInterest::where('place_of_interest_id', $id)
+      $places_of_interest = PlacesOfInterest::where('location_id', $location_id)
               ->get();
 
               return $places_of_interest;

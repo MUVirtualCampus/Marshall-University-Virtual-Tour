@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import poiModalTemplate from './poi-modal.html!text';
 
 export default class TourController {
   static resolve() {
@@ -26,17 +27,24 @@ export default class TourController {
             return results.data;
           });
         }
+      ],
+      placesOfInterest: ['$stateParams', 'placeOfInterestService', 'location', ($stateParams, placeOfInterestService, location) => {
+        return placeOfInterestService.getPlacesOfInterest(location.location_id).then((results) => {
+            return results.data;
+          });
+        }
       ]
     }
   }
 
   static get $inject(){
-    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks'];
+    return ['$scope', '$state', '$mdDialog', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks) {
+  constructor($scope, $state, $mdDialog, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
+    this.$modal = $mdDialog;
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
@@ -44,8 +52,9 @@ export default class TourController {
     this.location = location;
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
+    this.placesOfInterest = placesOfInterest;
     this.floors = this.initFloors();
-    this.floor = 3;
+    this.floor = 1;
     this.initPano(this.findLandingPicture());
 
   }
@@ -56,10 +65,11 @@ export default class TourController {
         // the custom panorama 'reception' which we check for below.
         this.panorama = new google.maps.StreetViewPanorama(
           document.getElementById('pano'), {
-            visible: true,
+            visible: false,
             panoProvider: () => {return this.getCustomPanorama(this.panorama.pano);},
             pano: picture.pano
         });
+        this.panorama.setVisible(true);
       }
 
       // Construct the appropriate StreetViewPanoramaData given
@@ -126,10 +136,36 @@ export default class TourController {
 
       findLandingPicture() {
         let landing = _.find(this.pictures, picture => {
-          return (picture.floor === this.floor && picture.is_landing)
+          return (picture.floor === this.floor && picture.is_landing == 1)
         });
 
         return landing;
+      }
+
+      openPOIModal(schedule) {
+        this.$modal.show({
+          template: poiModalTemplate,
+          controller: 'POIModalController as ctrl',
+          clickOutsideToClose:true,
+          bindToController: false,
+          resolve: {
+            placesOfInterest: () => this.placesOfInterest,
+            locations: () => this.locations,
+            location: () => this.location
+          }
+        })
+            .then((poi) => this.warp(poi));
+
+      }
+
+      warp(placeOfInterest){
+        //TODO: Change this to make it work with locations other than the current one
+        let picture = _.find(this.pictures, picture => {
+            return picture.picture_id === placeOfInterest.picture_id;
+          });
+
+        this.floor = picture.floor;
+        this.panorama.setPano(picture.pano);
       }
 
 }

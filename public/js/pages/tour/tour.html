@@ -23,6 +23,20 @@
             </md-content>
 
           </md-sidenav>
+      <md-sidenav
+              class="md-sidenav-left"
+              md-component-id="left"
+              md-is-locked-open="$mdMedia('gt-md')"
+              md-whiteframe="4">
+
+            <md-toolbar class="md-theme-green">
+              <h1 class="md-toolbar-tools">Quick Information</h1>
+            </md-toolbar>
+            <md-content layout-padding ng-value="picture" ng-repeat="picture in ctrl.pictures">
+              {{picture.info}}
+            </md-content>
+
+          </md-sidenav>
     </div>
     <div class="col-sm-9">
       <div id ="outer">

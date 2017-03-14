@@ -76,6 +76,8 @@ export default class TourController {
       // the passed picture.
       getCustomPanorama(pano) {
         let picture = _.find(this.pictures, item => item.pano === pano);
+        var info = document.getElementById('info');
+        info.innerHTML = picture.info;
         return {
           location: {
             pano: picture.pano,

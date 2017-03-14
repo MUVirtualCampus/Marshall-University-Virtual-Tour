@@ -38,13 +38,15 @@ export default class TourController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', '$mdDialog', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$timeout', '$mdDialog', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, $mdDialog, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
+  constructor($scope, $state, $timeout, $mdDialog, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
     this.$modal = $mdDialog;
+    this.$mdSidenav = $mdSidenav;
+    this.$timeout = $timeout; //$timeout(() => {this.sideNav = $mdSidenav('left');}, false);
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
@@ -55,6 +57,8 @@ export default class TourController {
     this.placesOfInterest = placesOfInterest;
     this.floors = this.initFloors();
     this.floor = 1;
+    this.$scope.$parent.ctrl.showMenu = true;
+    document.getElementById('navMenu').addEventListener('click', () => {this.openSideNav()});
     this.initPano(this.findLandingPicture());
 
   }
@@ -168,6 +172,12 @@ export default class TourController {
 
         this.floor = picture.floor;
         this.panorama.setPano(picture.pano);
+      }
+
+      openSideNav(){
+        //md-is-locked-open="$mdMedia('gt-md')"
+        let nav = this.$mdSidenav('left');
+        nav.toggle();
       }
 
 }

@@ -1,30 +1,32 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3">
+    <div layout="col">
       <md-sidenav
               class="md-sidenav-left"
               md-component-id="left"
-              md-is-locked-open="$mdMedia('gt-md')"
               md-whiteframe="4">
 
-            <md-toolbar class="md-theme-green">
-              <h1 class="md-toolbar-tools">Quick Jump</h1>
+            <md-toolbar class="md-theme-green" style="padding-top: 65px;">
+              <h1 class="md-toolbar-tools" layout="col">Quick Jump</h1>
             </md-toolbar>
             <md-content layout-padding>
-              <md-select ng-model="ctrl.location" ng-change="ctrl.switchLocations()">
+              <md-select ng-model="ctrl.location" ng-change="ctrl.switchLocations()" aria-label="tourlocation">
                 <md-option ng-value="location" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
               </md-select>
-              <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()" ng-if="ctrl.showFloors()">
+              <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()" ng-if="ctrl.showFloors()" aria-label="tourfloor">
                 <md-option ng-value="floor" ng-repeat="floor in ctrl.floors">Floor {{floor}}</md-option>
               </md-select>
+              <div style="text-align:center">
+                <md-button style="width:40%" class="md-raised md-primary" ng-click="ctrl.openPOIModal()">Warp</md-button>
+              </div>
             </md-content>
 
           </md-sidenav>
     </div>
-    <div class="col-sm-9">
+    <div>
       <div id ="outer">
         <div id ="inner" class="container-fluid">
-            <div id="pano" style= "height: 650px; width: 100%; text-align: center;"></div>
+            <div id="pano" style= "height: 620px; width: 100%; text-align: center;"></div>
         </div>
       </div>
     </div>

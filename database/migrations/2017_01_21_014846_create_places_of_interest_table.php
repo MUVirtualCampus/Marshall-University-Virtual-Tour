@@ -17,8 +17,8 @@ class CreatePlacesOfInterestTable extends Migration
           $table->increments('place_of_interest_id');
           $table->integer('location_id')->unsigned();
           $table->string('description');
-          $table->integer('heading');
-          $table->string('url');
+          $table->string('pano');
+          $table->integer('picture_id')->unsigned();    
         });
     }
 

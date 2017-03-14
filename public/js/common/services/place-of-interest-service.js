@@ -11,10 +11,8 @@ export default class PlaceOfInterestService extends BaseService {
     //this.baseUrl = $location.$$absUrl
   }
 
-  getPicture(id) {
-    this.$http.get('api/placesofinterest/' + id).then((response) => {
-      return response;
-    });
+  getPlacesOfInterest(id) {
+    return this.$http.get('api/placesofinterest/' + id);
   }
 
 }

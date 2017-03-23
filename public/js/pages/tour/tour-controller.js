@@ -54,12 +54,13 @@ export default class TourController {
     this.location = location;
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
-    this.placesOfInterest = placesOfInterest;
     this.floors = this.initFloors();
     this.floor = 1;
+    this.picture = this.findLandingPicture();
+    this.placesOfInterest = placesOfInterest;
     this.$scope.$parent.ctrl.showMenu = true;
     document.getElementById('navMenu').addEventListener('click', () => {this.openSideNav()});
-    this.initPano(this.findLandingPicture());
+    this.initPano(this.picture);
 
   }
 
@@ -80,8 +81,7 @@ export default class TourController {
       // the passed picture.
       getCustomPanorama(pano) {
         let picture = _.find(this.pictures, item => item.pano === pano);
-        var info = document.getElementById('info');
-        info.innerHTML = picture.info;
+        this.picture = picture;
         return {
           location: {
             pano: picture.pano,
@@ -142,7 +142,7 @@ export default class TourController {
 
       findLandingPicture() {
         let landing = _.find(this.pictures, picture => {
-          return (picture.floor === this.floor && picture.is_landing == 1)
+          return (picture.floor === this.floor && picture.is_landing == 1);
         });
 
         return landing;

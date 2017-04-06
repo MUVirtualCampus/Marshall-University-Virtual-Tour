@@ -56,7 +56,7 @@ return [
     /*
         this currently is broken, dont uncomment. Will eventually allow connection to change depending on environment
         if (App::environment('local')
-        {
+        { 
             'pgsql' => array(
                 'driver'    =>  'pgsql',
                 'host'      =>  'localhost',
@@ -69,8 +69,6 @@ return [
                 'prefix'    =>  '',
                 'schema'    =>  'public',
             ),
-
-        }*/
 
         /* This code allows the project to connect to Heroku's database
         if (App::environment('production')

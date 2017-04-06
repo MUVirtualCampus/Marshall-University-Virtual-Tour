@@ -7,7 +7,7 @@
               md-whiteframe="4">
 
             <md-toolbar class="md-theme-green" style="padding-top: 65px;">
-              <h1 class="md-toolbar-tools" layout="col">Quick Jump</h1>
+              <h1 class="md-toolbar-tools" layout="col">Navigation</h1>
             </md-toolbar>
             <md-content layout-padding>
               <md-select ng-model="ctrl.location" ng-change="ctrl.switchLocations()" aria-label="tourlocation">
@@ -16,11 +16,32 @@
               <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()" ng-if="ctrl.showFloors()" aria-label="tourfloor">
                 <md-option ng-value="floor" ng-repeat="floor in ctrl.floors">Floor {{floor}}</md-option>
               </md-select>
-              <div style="text-align:center">
-                <md-button style="width:40%" class="md-raised md-primary" ng-click="ctrl.openPOIModal()">Warp</md-button>
+              <div style="text-align:left">
+                <md-menu>
+                  <md-button style="width:40%" class="md-raised md-primary" ng-click="$mdOpenMenu()">Quick Jump</md-button>
+                  <md-menu-content>
+                    <md-menu-item ng-repeat="poi in ctrl.placesOfInterest">
+                      <md-button ng-click="ctrl.warp(poi)">
+                      {{poi.description}}
+                    </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
               </div>
             </md-content>
-
+            <hr>
+            <md-card ng-if="ctrl.showInfo()">
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">Information</span>
+                </md-card-title-text>
+            </md-card-title>
+              <md-card-content layout-padding>
+                <div id="info" style= " width: 100%;">
+                  {{ctrl.picture.info}}
+                </div>
+              </md-card-content>
+            </md-card>
           </md-sidenav>
     </div>
     <div>

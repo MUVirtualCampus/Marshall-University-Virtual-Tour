@@ -17,11 +17,12 @@ class CreatePicturesTable extends Migration
           $table->increments('picture_id');
           $table->integer('location_id')->unsigned();
           $table->integer('floor')->nullable();
-          $table->string('pano');
           $table->string('description');
           $table->integer('heading');
           $table->string('url');
+          $table->string('pano');
           $table->string('info')->nullable();
+          $table->bit('is_landing');
         });
     }
 

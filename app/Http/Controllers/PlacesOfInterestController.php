@@ -12,6 +12,7 @@ class PlacesOfInterestController extends Controller
     if($location_id != null)
     {
       $places_of_interest = PlacesOfInterest::where('location_id', $location_id)
+              ->orderBy('description')
               ->get();
 
               return $places_of_interest;

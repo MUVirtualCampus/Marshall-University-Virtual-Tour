@@ -82,6 +82,7 @@ export default class TourController {
       getCustomPanorama(pano) {
         let picture = _.find(this.pictures, item => item.pano === pano);
         this.picture = picture;
+        this.$scope.$apply();
         return {
           location: {
             pano: picture.pano,
@@ -178,6 +179,13 @@ export default class TourController {
         //md-is-locked-open="$mdMedia('gt-md')"
         let nav = this.$mdSidenav('left');
         nav.toggle();
+      }
+
+      showInfo() {
+        if(this.picture.info === '' || this.picture.info === null) {
+          return false;
+        }
+        return true;
       }
 
 }

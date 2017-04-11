@@ -1,7 +1,19 @@
 <div class="container-fluid">
   <div class="row">
-    <div layout="col">
-    	this is some textual shit
+  	<div class="page-header">
+    	<h2 class="text-center">Tour Management</h2>      
+  	</div>
+    <div class="col-sm-6">
+    	<md-content layout-padding>
+    		<md-select ng-model="ctrl.location" ng-change="ctrl.switchLocations()" aria-label="tourlocation">
+                <md-option ng-value="location" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
+              </md-select> 
+  		</md-content>
+    </div>
+    <div class="col-sm-6">
+    	<md-content layout-padding>
+    		
+  		</md-content>
     </div>
   </div>
 </div>

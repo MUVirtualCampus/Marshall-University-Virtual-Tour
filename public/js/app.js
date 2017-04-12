@@ -8,9 +8,11 @@ import 'angular-ui-router';
 import 'angular-bootstrap';
 import 'angular-ui-select';
 import 'angular-bootstrap-colorpicker';
+import 'satellizer';
 
 import homeModule from './pages/home-module';
 import dashboardModule from './pages/dashboard/dashboard-module';
+import loginModule from './pages/login/login-module';
 import servicesModule from './app-services';
 import tourModule from './pages/tour/tour-module';
 
@@ -23,8 +25,10 @@ let dependencies = [
   'ui.bootstrap',
   'colorpicker.module',
   'ui.select',
+  'satellizer',
   homeModule.name,
   dashboardModule.name,
+  loginModule.name,
   servicesModule.name,
   tourModule.name
 ];
@@ -41,9 +45,13 @@ var app = angular.module('mutour', dependencies)
     .accentPalette('orange');
 }])
 
-.run(['$state', ($state) =>{
-   $state.transitionTo('home.dashboard');
+.config(['$authProvider', ($authProvider) => {
+  $authProvider.loginUrl='/api/authenticate';
 }])
+
+/*.run(['$state', ($state) =>{
+   $state.transitionTo('home.dashboard');
+}])*/
 
 .run(['$rootScope', '$log', '$location', ($rootScope, $log, $location) => {
 

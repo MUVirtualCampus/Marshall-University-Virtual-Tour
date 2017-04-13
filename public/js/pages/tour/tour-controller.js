@@ -51,7 +51,7 @@ export default class TourController {
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
     this.locations = locations;
-    this.location = location;
+    this.location = 'waec';
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
     this.floors = this.initFloors();

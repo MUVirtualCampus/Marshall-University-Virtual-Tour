@@ -14,6 +14,7 @@ import dashboardModule from './pages/dashboard/dashboard-module';
 import servicesModule from './app-services';
 import tourModule from './pages/tour/tour-module';
 import managementModule from './pages/management/management-module';
+import uploadModule from './pages/upload/upload-module';
 
 let dependencies = [
   'angular-loading-bar',
@@ -28,7 +29,8 @@ let dependencies = [
   dashboardModule.name,
   servicesModule.name,
   tourModule.name,
-  managementModule.name
+  managementModule.name,
+  uploadModule.name
 ];
 
 var app = angular.module('mutour', dependencies)

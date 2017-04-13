@@ -8,7 +8,8 @@ export default function managementRoute($stateProvider) {
       url: 'management',
       template: template,
       controller: managementController,
-      controllerAs: 'ctrl'
+      controllerAs: 'ctrl',
+      resolve: managementController.resolve()
     });
 }
 

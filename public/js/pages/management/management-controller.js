@@ -37,12 +37,15 @@ export default class ManagementController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$timeout', '$mdDialog', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks'];
   }
 
-  constructor($scope, $state) {
+  constructor($scope, $state, $timeout, $mdDialog, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
+    this.$modal = $mdDialog;
+    this.$mdSidenav = $mdSidenav;
+    this.$timeout = $timeout; //$timeout(() => {this.sideNav = $mdSidenav('left');}, false);
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
@@ -50,7 +53,6 @@ export default class ManagementController {
     this.location = location;
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
-    this.placesOfInterest = placesOfInterest;
   }
 
   switchLocation() {

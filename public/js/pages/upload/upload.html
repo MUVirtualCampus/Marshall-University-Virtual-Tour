@@ -7,23 +7,23 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-xs>
             <label>Description</label>
-            <input ng-model="">
+            <input ng-model="user.company">
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-xs>
-            <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
-            <i ng-show="pictureForm.file.$error.required">*required</i><br>
-            <i ng-show="pictureForm.file.$error.maxSize">File too large 
+            <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile" ngf-resize="{width: 7200, height: 3600}">
+            <i ng-show="myForm.file.$error.required">*required</i><br>
+            <i ng-show="myForm.file.$error.maxSize">File too large 
               {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-            <img ng-show="pictureForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+            <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
           </md-input-container>
         </div>
 
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Location</label>
-            <md-select ng-model="">
-              <md-option ng-repeat="" value="">
+            <md-select ng-model="user.state">
+              <md-option ng-repeat="state in states" value="{{state.abbrev}}">
                 {{state.abbrev}}
               </md-option>
             </md-select>
@@ -31,25 +31,25 @@
 
           <md-input-container class="md-block" flex-gt-xs>
             <label>Floor Number</label>
-            <input ng-model="">
+            <input ng-model="user.company">
           </md-input-container>
         </div>
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Heading</label>
-            <input ng-model="">
+            <input ng-model="user.firstName">
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm>
             <label>Pano ID</label>
-            <input ng-model="">
+            <input ng-model="theMax">
           </md-input-container>
         </div>
 
         <md-input-container class="md-block">
           <label>Quick Information</label>
-          <textarea ng-model="" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+          <textarea ng-model="user.biography" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
 
         <md-button class="md-raised" ng-click="ctrl.uploadPanorama(picFile)">Upload Panorama</md-button>

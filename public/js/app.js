@@ -55,11 +55,15 @@ var app = angular.module('mutour', dependencies)
    $state.transitionTo('home.dashboard');
 }])*/
 
-.run(['$rootScope', '$log', '$location', ($rootScope, $log, $location) => {
+.run(['$rootScope', '$log', '$location', '$state', '$auth', ($rootScope, $log, $location, $state, $auth) => {
 
   $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
     if(fromParams.sort && toParams.sort && fromState.params.sort != toState.params.sort) {
       toParams.sort = toState.params.sort;
+    }
+    if(toState.name.includes('editor') && !$auth.isAuthenticated()) {
+      $state.go('home.login');
+      event.preventDefault();
     }
     $log.debug('$stateChangeStart to ' + toState.name + '- fired when the transition begins.',
       '\n  event: ', event,

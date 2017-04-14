@@ -58,7 +58,6 @@ export default class TourController {
     this.floor = 1;
     this.picture = this.findLandingPicture();
     this.placesOfInterest = placesOfInterest;
-    this.$scope.$parent.ctrl.showMenu = true;
     document.getElementById('navMenu').addEventListener('click', () => {this.openSideNav()});
     this.initPano(this.picture);
 

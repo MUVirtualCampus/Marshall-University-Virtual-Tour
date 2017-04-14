@@ -13,7 +13,11 @@ export default class UploadController {
       method: 'POST',
       headers: {'Authorization': 'Client-ID 9802a051aa6be8e'},
       data: {'image': file},
-    });
+    }).then((resp) => this.response(resp));
+  }
+
+  response(resp) {
+    console.log(resp.data.data.link);
   }
 
 }

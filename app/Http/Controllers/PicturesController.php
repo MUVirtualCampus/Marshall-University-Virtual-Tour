@@ -7,18 +7,25 @@ use App\Pictures;
 
 class PicturesController extends Controller
 {
-  public function getPictures($location_id = null)
+  public function getPictures(Request $filter)
   {
-    if($location_id != null)
+    $location_id = $filter->input('location_id');
+    $user_id = $filter->input('user_id');
+    if ($location_id != null)
     {
-      $pictures = Pictures::where('location_id', $location_id)
-              ->get();
+      $pictures = Pictures::where('location_id', $location_id);
+      if($user_id != null)
+      {
+        $pictures = $pictures->where('user_id', $user_id);
 
-              return $pictures;
+      }
+      $pictures = $pictures->get();
+
+      return $pictures;
     }
     else
     {
-      $pictures = PictureLinks::all();
+      $pictures = Pictures::all();
       return $pictures;
     }
   }

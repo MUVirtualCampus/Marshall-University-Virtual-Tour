@@ -11,7 +11,7 @@ class loginController {
 
     this.$auth.login(credentials).then((data) => {
 
-      this.$state.go('home.editor', {});
+      this.$state.go('home.editor.pictures', {});
     });
   }
 

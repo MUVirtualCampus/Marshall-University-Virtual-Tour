@@ -12,6 +12,7 @@ import 'satellizer';
 
 import homeModule from './pages/home-module';
 import dashboardModule from './pages/dashboard/dashboard-module';
+import directivesModule from './app-directives';
 import editorModule from './pages/editor/editor-module';
 import loginModule from './pages/login/login-module';
 import servicesModule from './app-services';
@@ -29,6 +30,7 @@ let dependencies = [
   'satellizer',
   homeModule.name,
   dashboardModule.name,
+  directivesModule.name,
   editorModule.name,
   loginModule.name,
   servicesModule.name,

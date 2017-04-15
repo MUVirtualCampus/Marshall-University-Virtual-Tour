@@ -1,22 +1,26 @@
 <div class="container-fluid">
   <div layout="row">
-    <md-sidenav
-        class="md-sidenav-left"
-        flex="15"
-        md-is-locked-open="$mdMedia('gt-sm')"
-        md-component-id="editorNav"
-        md-whiteframe="4"
-        style="position: fixed;">
-      <md-toolbar style="padding-top: 65px;">
-        <h1 class="md-toolbar-tools">Tour Editor</h1>
-      </md-toolbar>
-      <md-content layout-padding>
-        <p>
-          Links to the editor sections will go here
-        </p>
-      </md-content>
+      <md-sidenav
+          class="md-sidenav-left"
+          md-is-locked-open="$mdMedia('gt-sm')"
+          md-component-id="editorNav"
+          md-whiteframe="4"
+          style="position: fixed; width: 190px">
+        <md-toolbar style="padding-top: 65px;">
+          <h1 class="md-toolbar-tools">Tour Editor</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+          <p>
+            Links to the editor sections will go here
+          </p>
+        </md-content>
 
-    </md-sidenav>
-    <ui-view />
+      </md-sidenav>
+      <md-content flex layout-padding>
+        <div layout="column" layout-align="top center">
+          <ui-view/>
+        </div>
+
+      </md-content>
   </div>
 </div>

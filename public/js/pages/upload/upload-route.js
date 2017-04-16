@@ -8,7 +8,8 @@ export default function uploadRoute($stateProvider) {
       url: 'upload',
       template: template,
       controller: uploadController,
-      controllerAs: 'ctrl'
+      controllerAs: 'ctrl',
+      resolve: uploadController.resolve()
     });
 }
 

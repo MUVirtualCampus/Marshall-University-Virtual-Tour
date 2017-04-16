@@ -16,4 +16,8 @@ export default class PictureService extends BaseService {
     return this.$http.get('api/pictures/' + location_id);
   }
 
+  uploadPicture(data) {
+    this.$http.post('api/pictures/', data)
+  }
+
 }

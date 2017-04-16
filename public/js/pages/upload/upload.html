@@ -7,11 +7,11 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-xs>
             <label>Description</label>
-            <input ng-model="user.company">
+            <input ng-model="ctrl.description" ng-value = "description">
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-xs>
-            <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile" ngf-resize="{width: 7200, height: 3600}">
+            <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile" ngf-resize="{width: 100, height: 100}">
             <i ng-show="myForm.file.$error.required">*required</i><br>
             <i ng-show="myForm.file.$error.maxSize">File too large 
               {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
@@ -22,34 +22,34 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Location</label>
-            <md-select ng-model="user.state">
-              <md-option ng-repeat="state in states" value="{{state.abbrev}}">
-                {{state.abbrev}}
+            <md-select ng-model="ctrl.location">
+              <md-option ng-repeat="location in ctrl.locations" ng-value="location">
+                {{location.description}}
               </md-option>
             </md-select>
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-xs>
             <label>Floor Number</label>
-            <input ng-model="user.company">
+            <input ng-model="ctrl.floor" ng-value = "floor">
           </md-input-container>
         </div>
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Heading</label>
-            <input ng-model="user.firstName">
+            <input ng-model="ctrl.heading" ng-value = "heading">
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm>
             <label>Pano ID</label>
-            <input ng-model="theMax">
+            <input ng-model="ctrl.panoID" ng-value = "panoID">
           </md-input-container>
         </div>
 
         <md-input-container class="md-block">
           <label>Quick Information</label>
-          <textarea ng-model="user.biography" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+          <textarea ng-model="ctrl.info" ng-value = "info" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
 
         <md-button class="md-raised" ng-click="ctrl.uploadPanorama(picFile)">Upload Panorama</md-button>

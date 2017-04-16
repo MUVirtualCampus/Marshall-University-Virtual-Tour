@@ -1,49 +1,40 @@
-<form role="form" name="pictureForm" ng-submit="ctrl.save()">
-  <fieldset>
-    <div class="row">
-      <div class="col-md-4 center-text">
-        <div><label for="title">Location</label></div>
-        <div ng-if="ctrl.isEditable && ctrl.picture.hasWrite">
-          <input class="form-control" type="text" ng-model="ctrl.picture.location_id" id="location" placeholder="Location" required />
-        </div>
-        <readonly-field ng-if="!ctrl.isEditable">{{ ctrl.picture.location_id}}</readonly-field>
-      </div>
+<div layout="column" ng-cloak class="md-inline-form">
 
-      <div class="col-md-4 center-text">
-        <div><label for="floor">Floor</label></div>
-        <div ng-if="ctrl.isEditable">
-          <input name="floor" id="floor" class="form-control" type="text" placeholder="Floor" ng-model="ctrl.picture.floor" maxlength="2" />
+  <md-content layout-padding>
+    <div>
+      <form name="pictureForm">
+
+        <div layout-gt-xs="row">
+          <md-input-container  flex-gt-sm>
+            <label>Location</label>
+            <input ng-model="ctrl.picture.location_id">
+          </md-input-container>
+
+          <md-input-container>
+            <label>Floor</label>
+            <input ng-model="ctrl.picture.floor">
+          </md-input-container>
+
+          <md-input-container>
+            <label>Heading</label>
+            <input ng-model="ctrl.picture.heading">
+          </md-input-container>
         </div>
-        <readonly-field ng-if="!ctrl.isEditable">{{ ctrl.picture.floor}}</readonly-field>
-      </div>
-      <div class="col-md-4 center-text">
-        <div><label for="description">Description</label></div>
-        <div ng-if="ctrl.isEditable">
-          <input name="description" id="description" class="form-control" type="text" placeholder="Description" ng-model="ctrl.picture.description" />
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Description</label>
+            <input ng-model="ctrl.picture.description">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Panorama Name</label>
+            <input ng-model="ctrl.picture.pano">
+          </md-input-container>
         </div>
-        <readonly-field ng-if="!ctrl.isEditable">{{ ctrl.picture.description}}</readonly-field>
-      </div>
+
+      </form>
     </div>
-    <div class="row">
-      <div class="col-sm-4 center-text">
-        <div><label for="heading">Heading</label></div>
-        <div ng-if="ctrl.isEditable">
-          <input name="heading" id="heading" class="form-control" type="text" placeholder="Heading" ng-model="ctrl.picture.heading" maxlength="3" />
-        </div>
-        <readonly-field ng-if="!ctrl.isEditable">{{ ctrl.picture.heading}}</readonly-field>
-      </div>
-      <div class="col-sm-4 center-text">
-        <div><label for="pano">Panorama Name</label></div>
-        <div ng-if="ctrl.isEditable">
-          <input name="pano" id="pano" class="form-control" type="text" placeholder="Panorama Name" ng-model="ctrl.picture.pano" />
-        </div>
-        <readonly-field ng-if="!ctrl.isEditable">{{ ctrl.picture.pano}}</readonly-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        Edit Buttons go here
-      </div>
-    </div>
-  </fieldset>
-</form>
+  </md-content>
+
+</div>

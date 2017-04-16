@@ -1,11 +1,13 @@
 <div class="container-fluid">
   <div layout="row">
+    <div layout="column" flex="25">
       <md-sidenav
           class="md-sidenav-left"
           md-is-locked-open="$mdMedia('gt-sm')"
           md-component-id="editorNav"
           md-whiteframe="4"
-          style="position: fixed; width: 190px">
+          style="position: fixed; width: 250px;"
+          >
         <md-toolbar style="padding-top: 65px;">
           <h1 class="md-toolbar-tools">Tour Editor</h1>
         </md-toolbar>
@@ -16,8 +18,9 @@
         </md-content>
 
       </md-sidenav>
-      <md-content flex layout-padding>
-        <div layout="column" layout-align="top center">
+    </div>
+      <md-content flex="75">
+        <div layout="column">
           <ui-view/>
         </div>
 

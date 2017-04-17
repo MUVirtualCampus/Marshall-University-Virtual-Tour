@@ -43,10 +43,10 @@ export default class UploadController {
       method: 'POST',
       headers: {'Authorization': 'Client-ID 9802a051aa6be8e'},
       data: {'image': file},
-    }).then((resp) => this.response(resp));
+    }).then((resp) => this.savePanorama(resp));
   }
 
-  response(resp) {
+  savePanorama(resp) {
     console.log(resp.data.data.link);
     console.log(this.location.location_id);
     console.log(this.description);
@@ -59,12 +59,12 @@ export default class UploadController {
       "floor": this.floor,
       "description": this.description,
       "heading": this.heading,
-      "url": this.url,
+      "url": resp.data.data.link,
       "pano": this.panoID,
       "info": this.info,
-      "is_landing": '0'
+      "is_landing": 0
     };
-    this.pictureService.uploadPicture(data);
+    this.pictureService.savePicture(data);
   }
 
 }

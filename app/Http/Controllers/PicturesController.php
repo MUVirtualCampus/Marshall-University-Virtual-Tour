@@ -22,4 +22,20 @@ class PicturesController extends Controller
       return $pictures;
     }
   }
+
+  public function savePicture(Request $request)
+  {
+    Pictures::create(array(
+        'location_id' => $request->get('location_id'),
+        'floor' => $request->get('floor'),
+        'description' => $request->get('description'),
+        'heading' => $request->get('heading'),
+        'url' => $request->get('url'),
+        'pano' => $request->get('pano'),
+        'info' => $request->get('info'),
+        'is_landing' => $request->get('is_landing')
+      ));
+
+    return ['success' => true];
+  }
 }

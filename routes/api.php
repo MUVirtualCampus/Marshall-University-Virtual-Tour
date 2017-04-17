@@ -18,3 +18,4 @@ Route::get('pictures/{location_id?}', 'PicturesController@getPictures');
 Route::get('picturelinks/{location_id?}', 'PictureLinksController@getPictureLinks');
 Route::get('placesofinterest/{location_id?}', 'PlacesOfInterestController@getPlacesOfInterest');
 Route::post('authenticate', 'AuthenticateController@authenticate');
+Route::post('savePicture', 'PicturesController@savePicture');

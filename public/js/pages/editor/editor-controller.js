@@ -35,12 +35,13 @@ export default class editorController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$auth', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
+  constructor($scope, $state, $auth, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
+    this.$auth = $auth;
     this.locations = locations;
     this.location = location;
     this.pictures = pictures;
@@ -49,8 +50,15 @@ export default class editorController {
 
     this.tabs = [
       { title: 'Images', state: 'home.editor.pictures'},
-      { title: 'Logout', state: 'home.logout'},
+      { title: 'Logout', state: 'home.login'},
     ];
+  }
+
+  transitionTo(tab) {
+    if(tab.title === 'Logout') {
+      this.$auth.logout();
+    }
+    this.$state.go(tab.state);
   }
 
 }

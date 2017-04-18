@@ -1,8 +1,16 @@
 <div class="container-fluid">
-  <ul class="list-group" style="list-style: none;">
-    <li class="list-group">
-      <picture-editor picture="ctrl.pictures[0]"></picture-editor>
-    </li>
-    <md-divider></md-divider>
-  </ul>
+  <div layout="column">
+    <div>
+      <ul class="list-group" style="list-style: none;">
+        <li class="list-group">
+          <picture-editor picture="ctrl.pictures[0]"></picture-editor>
+        </li>
+      </ul>
+    </div>
+    <div class="fab">
+      <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="addPicture">
+        <md-icon md-svg-src="../../../../images/add-white.svg"></md-icon>
+      </md-button>
+    </div>
+  </div>
 </div>

@@ -2,38 +2,45 @@
 
   <md-content layout-padding>
     <div>
-      <form name="pictureForm">
+      <md-card>
+        <md-card-content>
+          <form name="pictureForm">
 
-        <div layout-gt-xs="row">
-          <md-input-container  flex-gt-sm>
-            <label>Location</label>
-            <input ng-model="ctrl.picture.location_id">
-          </md-input-container>
+            <div layout-gt-xs="row">
+              <md-input-container flex-gt-sm>
+                <label>Location</label>
+                <input ng-model="ctrl.picture.location_id">
+              </md-input-container>
 
-          <md-input-container>
-            <label>Floor</label>
-            <input ng-model="ctrl.picture.floor">
-          </md-input-container>
+              <md-input-container>
+                <label>Floor</label>
+                <input ng-model="ctrl.picture.floor">
+              </md-input-container>
 
-          <md-input-container>
-            <label>Heading</label>
-            <input ng-model="ctrl.picture.heading">
-          </md-input-container>
-        </div>
+              <md-input-container>
+                <label>Heading</label>
+                <input ng-model="ctrl.picture.heading">
+              </md-input-container>
+            </div>
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Description</label>
-            <input ng-model="ctrl.picture.description">
-          </md-input-container>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Description</label>
+                <input ng-model="ctrl.picture.description">
+              </md-input-container>
 
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Panorama Name</label>
-            <input ng-model="ctrl.picture.pano">
-          </md-input-container>
-        </div>
-
-      </form>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Panorama Name</label>
+                <input ng-model="ctrl.picture.pano">
+              </md-input-container>
+            </div>
+            <md-card-actions layout="row" layout-align="start center">
+              <md-button class="md-raised md-primary">Save</md-button>
+              <md-button class="md-warn">Delete</md-button>
+            </md-card-actions>
+          </form>
+        </md-card-content>
+      </md-card>
     </div>
   </md-content>
 

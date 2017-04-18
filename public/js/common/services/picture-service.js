@@ -24,4 +24,8 @@ export default class PictureService extends BaseService {
             });
   }
 
+  update(picture) {
+    return super.update(picture, 'pictures');
+  }
+
 }

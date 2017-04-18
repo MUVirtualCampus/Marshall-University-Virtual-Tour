@@ -2,8 +2,8 @@
   <div layout="column">
     <div>
       <ul class="list-group" style="list-style: none;">
-        <li class="list-group">
-          <picture-editor picture="ctrl.pictures[0]"></picture-editor>
+        <li class="list-group" ng-repeat="picture in ctrl.pictures">
+          <picture-editor picture="picture"></picture-editor>
         </li>
       </ul>
     </div>

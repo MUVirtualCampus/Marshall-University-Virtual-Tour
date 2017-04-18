@@ -1,3 +1,4 @@
+import _ from 'lodash';
 export default class pictureController {
 
   static get $inject(){
@@ -8,7 +9,7 @@ export default class pictureController {
     this.$scope = $scope;
     this.$state = $state;
     this.locations = locations;
-    this.pictures = pictures;
+    this.pictures = _.filter(pictures, (picture) => {return picture.floor === 4});
   }
 
 }

@@ -10,7 +10,7 @@ export default class PictureEditorController {
   }
 
   save() {
-    //TODO: add save function
+    this.pictureService.update(this.picture);
   }
 
 }

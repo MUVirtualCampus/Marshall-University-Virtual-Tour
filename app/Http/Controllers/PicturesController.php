@@ -29,4 +29,21 @@ class PicturesController extends Controller
       return $pictures;
     }
   }
+
+  public function update(Request $request)
+  {
+    $id = $request->input('picture_id');
+    $picture = Pictures::where('picture_id', $id)
+                         ->update([
+                            'location_id' => $request->input('location_id'),
+                            'floor' => $request->input('floor'),
+                            'description' => $request->input('description'),
+                            'heading' => $request->input('heading'),
+                            'url' => $request->input('url'),
+                            'pano' => $request->input('pano'),
+                            'info' => $request->input('info'),
+                            'is_landing' => $request->input('is_landing')
+                          ]);
+    return response()->json(["picture" => $picture]);
+  }
 }

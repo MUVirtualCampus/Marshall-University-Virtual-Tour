@@ -12,9 +12,15 @@
           <h1 class="md-toolbar-tools">Tour Editor</h1>
         </md-toolbar>
         <md-content layout-padding>
-          <p>
-            Links to the editor sections will go here
-          </p>
+          <md-list>
+            <md-list-item class="md-2-line" ng-repeat="tab in ctrl.tabs" ng-click="null">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ tab.title }}</h3>
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
         </md-content>
 
       </md-sidenav>

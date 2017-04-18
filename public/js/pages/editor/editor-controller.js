@@ -46,6 +46,11 @@ export default class editorController {
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
     this.placesOfInterest = placesOfInterest;
+
+    this.tabs = [
+      { title: 'Images', state: 'home.editor.pictures'},
+      { title: 'Logout', state: 'home.logout'},
+    ];
   }
 
 }

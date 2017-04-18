@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::get('locations/{id?}', 'LocationsController@getLocations');
 Route::post('pictures', 'PicturesController@getPictures');
 Route::patch('pictures', 'PicturesController@update');
+Route::post('pictures/create', 'PicturesController@create');
 Route::get('picturelinks/{location_id?}', 'PictureLinksController@getPictureLinks');
 Route::get('placesofinterest/{location_id?}', 'PlacesOfInterestController@getPlacesOfInterest');
 Route::post('authenticate', 'AuthenticateController@authenticate');

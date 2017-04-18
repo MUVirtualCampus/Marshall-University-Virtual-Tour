@@ -45,5 +45,22 @@ class PicturesController extends Controller
                             'is_landing' => $request->input('is_landing')
                           ]);
     return response()->json(["picture" => $picture]);
+
+  }
+
+  public function create(Request $request)
+  {
+    Pictures::create(array(
+        'location_id' => $request->get('location_id'),
+        'floor' => $request->get('floor'),
+        'description' => $request->get('description'),
+        'heading' => $request->get('heading'),
+        'url' => $request->get('url'),
+        'pano' => $request->get('pano'),
+        'info' => $request->get('info'),
+        'is_landing' => $request->get('is_landing')
+      ));
+
+    return ['success' => true];
   }
 }

@@ -8,7 +8,7 @@ export default class PictureService extends BaseService {
     ];
   }
   constructor($location, $http) {
-    super($http);
+    super($http, 'pictures');
     //this.baseUrl = $location.$$absUrl
   }
 
@@ -25,7 +25,11 @@ export default class PictureService extends BaseService {
   }
 
   update(picture) {
-    return super.update(picture, 'pictures');
+    return super.update(picture);
+  }
+
+  create(data) {
+    return super.create(picture);
   }
 
 }

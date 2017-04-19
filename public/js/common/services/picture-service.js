@@ -29,7 +29,7 @@ export default class PictureService extends BaseService {
   }
 
   create(data) {
-    return super.create(picture);
+    return super.create(data);
   }
 
 }

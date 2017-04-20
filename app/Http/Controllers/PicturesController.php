@@ -44,7 +44,7 @@ class PicturesController extends Controller
                             'info' => $request->input('info'),
                             'is_landing' => $request->input('is_landing')
                           ]);
-    return response()->json(["picture" => $picture]);
+    return ['success' => true];
 
   }
 

@@ -31,7 +31,9 @@ System.config({
     "core-js": "npm:core-js@1.2.7",
     "font-awesome": "github:fortawesome/font-awesome@4.5.0",
     "lodash": "npm:lodash@4.0.1",
+    "ng-file-upload": "npm:ng-file-upload@12.2.13",
     "plugin-text": "github:systemjs/plugin-text@0.0.4",
+    "satellizer": "npm:satellizer@0.15.5",
     "text": "github:systemjs/plugin-text@0.0.4",
     "github:angular-ui/ui-router@0.2.17": {
       "angular": "github:angular/bower-angular@1.5.5"
@@ -105,6 +107,9 @@ System.config({
     "npm:lodash@4.0.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:ng-file-upload@12.2.13": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -112,6 +117,9 @@ System.config({
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
+    },
+    "npm:satellizer@0.15.5": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",

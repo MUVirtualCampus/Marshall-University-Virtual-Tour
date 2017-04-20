@@ -7,7 +7,7 @@ export default class PictureLinkService extends BaseService {
     ];
   }
   constructor($location, $http) {
-    super($http);
+    super($http, 'picturelinks');
     //this.baseUrl = $location.$$absUrl
   }
 

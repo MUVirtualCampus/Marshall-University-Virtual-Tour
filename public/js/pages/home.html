@@ -4,18 +4,20 @@
   <div class="container-fluid">
     <div class="navbar-header" layout="row" layout-align="center center">
       <div id="navMenu">
-        <i class="fa fa-bars fa-2x" aria-hidden="true" ng-click="ctrl.toggleQuickJump()" ng-hide="!ctrl.showMenu"
-          style="color:#FFFFFF; text-align: center; vertical-align: bottom;padding-right: 10px;">
-        </i>
+        <md-button class="md-icon-button md-primary" ng-click="ctrl.openMenu()" ng-hide="!ctrl.showMenu()" aria-label="menubutton">
+          <md-icon md-svg-src="../../images/hamburger-menu.svg"></md-icon>
+        </md-button>
       </div>
-      <img src="http://www.marshall.edu/bootstrap/img/mu_header_logo.png" alt="logo" ng-click="ctrl.goToDashboard()">
+      <md-button class="md-primary" ng-click="ctrl.goToDashboard()" aria-label="homebutton">
+        <img src="http://www.marshall.edu/bootstrap/img/mu_header_logo.png" alt="logo">
+      </md-button>
     </div>
   </div>
 
 </div>
 <!--EndHeader-->
 
-<!--TODO: remove this and make the content appear below the navbar with css--->
+<!--TODO: remove this and make the content appear below the navbar with css-->
 
 
 <div class="container-fluid" style="padding-top: 65px;">

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div layout="row">
+    <div layout="column" flex="25">
+      <md-sidenav
+          class="md-sidenav-left"
+          md-is-locked-open="$mdMedia('gt-sm')"
+          md-component-id="editorNav"
+          md-whiteframe="4"
+          style="position: fixed; width: 250px;"
+          >
+        <md-toolbar style="padding-top: 65px;">
+          <h1 class="md-toolbar-tools">Tour Editor</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+          <md-list>
+            <md-list-item class="md-2-line" ng-repeat="tab in ctrl.tabs" ng-click="ctrl.transitionTo(tab)">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ tab.title }}</h3>
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </md-content>
+
+      </md-sidenav>
+    </div>
+      <md-content flex="75">
+        <div layout="column" layout-align="center start">
+          <ui-view/>
+        </div>
+
+      </md-content>
+  </div>
+</div>

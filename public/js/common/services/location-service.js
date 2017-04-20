@@ -7,7 +7,7 @@ export default class LocationService extends BaseService {
     ];
   }
   constructor($location, $http) {
-    super($http);
+    super($http, 'locations');
     //this.baseUrl = $location.$$absUrl
   }
 

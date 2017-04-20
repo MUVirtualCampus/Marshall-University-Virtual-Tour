@@ -8,12 +8,28 @@ export default class PictureService extends BaseService {
     ];
   }
   constructor($location, $http) {
-    super($http);
+    super($http, 'pictures');
     //this.baseUrl = $location.$$absUrl
   }
 
   getPictures(location_id) {
-    return this.$http.get('api/pictures/' + location_id);
+    let filter = {};
+    filter.location_id = location_id;
+
+    return this.$http({
+                method: 'POST',
+                url: '/api/pictures/',
+                headers: { 'Content-Type' : 'application/json' },
+                data: JSON.stringify(filter)
+            });
+  }
+
+  update(picture) {
+    return super.update(picture);
+  }
+
+  create(data) {
+    return super.create(data);
   }
 
 }

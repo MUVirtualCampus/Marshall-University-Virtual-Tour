@@ -7757,4 +7757,15 @@ button.close {
   }
 }
 
+.center-text {
+  text-align: center;
+}
+
+.fab {
+  margin: 0px;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
 /*# sourceMappingURL=app.css.map */

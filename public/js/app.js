@@ -8,9 +8,14 @@ import 'angular-ui-router';
 import 'angular-bootstrap';
 import 'angular-ui-select';
 import 'angular-bootstrap-colorpicker';
+import 'satellizer';
+import 'ng-file-upload';
 
 import homeModule from './pages/home-module';
 import dashboardModule from './pages/dashboard/dashboard-module';
+import directivesModule from './app-directives';
+import editorModule from './pages/editor/editor-module';
+import loginModule from './pages/login/login-module';
 import servicesModule from './app-services';
 import tourModule from './pages/tour/tour-module';
 
@@ -23,8 +28,13 @@ let dependencies = [
   'ui.bootstrap',
   'colorpicker.module',
   'ui.select',
+  'satellizer',
+  'ngFileUpload',
   homeModule.name,
   dashboardModule.name,
+  directivesModule.name,
+  editorModule.name,
+  loginModule.name,
   servicesModule.name,
   tourModule.name
 ];
@@ -41,15 +51,23 @@ var app = angular.module('mutour', dependencies)
     .accentPalette('orange');
 }])
 
-.run(['$state', ($state) =>{
-   $state.transitionTo('home.dashboard');
+.config(['$authProvider', ($authProvider) => {
+  $authProvider.loginUrl='/api/authenticate';
 }])
 
-.run(['$rootScope', '$log', '$location', ($rootScope, $log, $location) => {
+/*.run(['$state', ($state) =>{
+   $state.transitionTo('home.dashboard');
+}])*/
+
+.run(['$rootScope', '$log', '$location', '$state', '$auth', ($rootScope, $log, $location, $state, $auth) => {
 
   $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
     if(fromParams.sort && toParams.sort && fromState.params.sort != toState.params.sort) {
       toParams.sort = toState.params.sort;
+    }
+    if(toState.name.includes('editor') && !$auth.isAuthenticated()) {
+      $state.go('home.login');
+      event.preventDefault();
     }
     $log.debug('$stateChangeStart to ' + toState.name + '- fired when the transition begins.',
       '\n  event: ', event,

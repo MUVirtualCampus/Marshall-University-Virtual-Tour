@@ -18,7 +18,7 @@ export default class PictureService extends BaseService {
 
     return this.$http({
                 method: 'POST',
-                url: '/api/pictures/',
+                url: '/api/findpictures/',
                 headers: { 'Content-Type' : 'application/json' },
                 data: JSON.stringify(filter)
             });

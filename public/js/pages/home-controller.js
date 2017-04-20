@@ -13,6 +13,10 @@ class HomeController {
     return this.$state.current.name === 'home.tour';
   }
 
+  openMenu() {
+    this.$scope.$broadcast('open', 'this.$scope');
+  }
+
 
 
 }

@@ -8,24 +8,26 @@
       </md-card-title>
       <md-card-content>
         <form name="loginForm" ng-submit="ctrl.login()" novalidate>
-          <div class="row">
-            <md-input-container class="md-block" flex-gt-sm>
+          <div layout="row" layout-align="center center">
+            <md-input-container class="md-block" flex="65">
               <label>Email</label>
               <input ng-model="email">
             </md-input-container>
           </div>
 
-          <div class="row">
-            <md-input-container class="md-block" flex-gt-sm>
+          <div layout="row" layout-align="center center">
+            <md-input-container class="md-block" flex="65">
               <label>Password</label>
               <input ng-model="password" type="password">
             </md-input-container>
           </div>
-          <div class="row">
-            <div class="col-xs-2">
+          <div layout="row" layout-align="center center">
+            <div layout="column" flex="65">
               <md-button class="md-raised md-primary" ng-disabled="loginForm.$invalid" ng-click="ctrl.login(email, password)">Login</md-button>
             </div>
           </div>
+          <!--Invisible button that allows submit upon pressing enter http://stackoverflow.com/questions/477691/submitting-a-form-by-pressing-enter-without-a-submit-button-->
+          <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
         </form>
       </md-card-content>
     </md-card>

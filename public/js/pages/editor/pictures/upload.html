@@ -8,7 +8,7 @@
           <div layout-gt-xs="row">
             <md-input-container class="md-block" flex-gt-xs>
               <label>Description</label>
-              <input ng-model="ctrl.description" ng-value = "description">
+              <input ng-model="ctrl.description" ng-value = "description" required>
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-xs>
@@ -21,7 +21,7 @@
           <div layout-gt-xs="row">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Location</label>
-              <md-select ng-model="ctrl.location">
+              <md-select ng-model="ctrl.location" required>
                 <md-option ng-repeat="location in ctrl.locations" ng-value="location">
                   {{location.description}}
                 </md-option>
@@ -30,19 +30,19 @@
 
             <md-input-container class="md-block" flex-gt-xs>
               <label>Floor Number</label>
-              <input ng-model="ctrl.floor" ng-value = "floor">
+              <input ng-model="ctrl.floor" ng-value = "floor" required>
             </md-input-container>
           </div>
 
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
               <label>Heading</label>
-              <input ng-model="ctrl.heading" ng-value = "heading">
+              <input ng-model="ctrl.heading" ng-value = "heading" required>
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-sm>
               <label>Pano ID</label>
-              <input ng-model="ctrl.panoID" ng-value = "panoID">
+              <input ng-model="ctrl.panoID" ng-value = "panoID" required>
             </md-input-container>
           </div>
 
@@ -51,7 +51,7 @@
             <textarea ng-model="ctrl.info" ng-value = "info" md-maxlength="500" rows="5" md-select-on-focus></textarea>
           </md-input-container>
 
-          <md-button class="md-raised" ng-click="ctrl.uploadPanorama(picFile)">Save</md-button>
+          <md-button class="md-raised" ng-disabled="pictureForm.$invalid" ng-click="ctrl.uploadPanorama(picFile)">Save</md-button>
           <md-button class="md-warn" ng-click="ctrl.backToPictures()">Cancel</md-button>
 
         </form>

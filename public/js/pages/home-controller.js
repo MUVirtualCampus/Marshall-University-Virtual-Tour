@@ -1,8 +1,9 @@
 class HomeController {
 
-  constructor($scope, $state) {
+  constructor($scope, $state, $mdMedia) {
     this.$scope = $scope;
     this.$state = $state;
+    this.$mdMedia = $mdMedia;
   }
 
   goToDashboard(){
@@ -10,7 +11,11 @@ class HomeController {
   }
 
   showMenu(){
-    return this.$state.current.name === 'home.tour';
+    return this.$state.current.name === 'home.tour' || this.showEditorMenu();
+  }
+
+  showEditorMenu() {
+    return this.$state.current.name.includes('editor') && (this.$mdMedia('sm') || this.$mdMedia('xs'));
   }
 
   openMenu() {
@@ -21,5 +26,5 @@ class HomeController {
 
 }
 
-HomeController.$inject = ['$scope', '$state'];
+HomeController.$inject = ['$scope', '$state', '$mdMedia'];
 export default HomeController;

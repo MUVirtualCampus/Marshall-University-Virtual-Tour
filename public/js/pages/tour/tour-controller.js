@@ -16,7 +16,7 @@ export default class TourController {
         }
       ],
       pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {
-        return pictureService.getPictures(location.location_id).then((results) => {
+        return pictureService.getPictures({location_id: location.location_id}).then((results) => {
             return results.data;
           });
         }

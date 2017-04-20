@@ -9,13 +9,12 @@ export default class pictureController {
     this.$scope = $scope;
     this.$state = $state;
     this.locations = locations;
-    //TODO: Change all this crap
-    this.pictures = _.filter(pictures, (picture) => {return picture.floor === 4});
+    this.allPictures = pictures;
     this.location = _.find(locations, (location) => {return location.location_id === 1});
-    //TODO: Remove this line and uncomment the other for production
-    this.floor = 4;
     this.floors = this.initFloors();
-    //this.floor = this.floors.length > 0 ? this.floors[0] : null;
+    this.floor = this.floors.length > 0 ? this.floors[0] : null;
+    this.pictures = null;
+    this.findPictures();
   }
 
   goToUpload() {
@@ -27,7 +26,7 @@ export default class pictureController {
   }
 
   switchFloors() {
-    console.log('Switch!');
+    this.findPictures();
   }
 
   initFloors() {
@@ -35,7 +34,13 @@ export default class pictureController {
     for(let i = 1; i <= this.location.floors; i++) {
       floorArray.push(i);
     }
+
     return floorArray;
+  }
+
+
+  findPictures() {
+    this.pictures = _.filter(this.allPictures, (picture) => {return picture.floor === this.floor});
   }
 
 }

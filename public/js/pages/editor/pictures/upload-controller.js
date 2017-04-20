@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import toastTemplate from './toast.html!text';
+
 export default class UploadController {
 
   static resolve() {
@@ -43,7 +45,7 @@ export default class UploadController {
     this.Upload.upload({
       url: 'https://api.imgur.com/3/image',
       method: 'POST',
-      headers: {'Authorization': 'Client-ID 9802a051aa6be8e'},
+      headers: {'Authorization': 'Client-ID 7f19fd5f1603734'},
       data: {'image': file},
     }).then((resp) => this.savePanorama(resp));
   }
@@ -60,7 +62,16 @@ export default class UploadController {
       'info': this.info,
       'is_landing': 0
     };
-    this.pictureService.create(data);
+    this.pictureService.create(data).then((resp) => this.showCustomToast(resp));
+  }
+
+  showCustomToast(resp) {
+  	this.$mdToast.show({
+  		hideDelay	: 3000,
+  		position	: 'center',
+  		controller  : 'ToastController as ctrl',
+  		template    : toastTemplate
+  	});
   }
 
   backToPictures() {

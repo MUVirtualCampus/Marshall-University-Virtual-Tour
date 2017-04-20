@@ -9,7 +9,9 @@
             <div layout-gt-xs="row">
               <md-input-container flex-gt-sm>
                 <label>Location</label>
-                <input ng-model="ctrl.picture.location_id">
+                <md-select ng-model="ctrl.picture.location_id" aria-label="piclocation">
+                  <md-option ng-value="location.location_id" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
+                </md-select>
               </md-input-container>
 
               <md-input-container>

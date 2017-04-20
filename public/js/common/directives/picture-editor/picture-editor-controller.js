@@ -7,6 +7,7 @@ export default class PictureEditorController {
     this.pictureService = pictureService;
     this.picture = $scope.picture;
     this.$mdToast = $mdToast
+    this.locations = $scope.locations;
 
   }
 

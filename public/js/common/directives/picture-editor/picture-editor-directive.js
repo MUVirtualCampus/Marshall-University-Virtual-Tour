@@ -12,7 +12,8 @@ export default class PictureEditor {
     this.replace = true;
     this.template = pictureEditorTemplate;
     this.scope = {
-      picture: '='
+      picture: '=',
+      locations: '='
     };
 
     this.controller = pictureEditorController;

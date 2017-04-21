@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import angular from 'angular';
+
 export default class PictureEditorController {
   static get $inject() {
     return ['pictureService', '$scope', '$mdToast'];
@@ -28,6 +31,16 @@ export default class PictureEditorController {
            .hideDelay(3000)
           );
       });
+  }
+
+  maxFloor() {
+    let location = _.find(this.locations, (item) => {return item.location_id === this.picture.location_id;});
+    if (!angular.isUndefined(location)) {
+      return location.floors;
+    }
+    else {
+      return 99;
+    }
   }
 
 }

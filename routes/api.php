@@ -19,4 +19,5 @@ Route::patch('pictures', 'PicturesController@update');
 Route::post('pictures/create', 'PicturesController@create');
 Route::get('picturelinks/{location_id?}', 'PictureLinksController@getPictureLinks');
 Route::get('placesofinterest/{location_id?}', 'PlacesOfInterestController@getPlacesOfInterest');
+Route::patch('placesofinterest', 'PlacesOfInterestController@update');
 Route::post('authenticate', 'AuthenticateController@authenticate');

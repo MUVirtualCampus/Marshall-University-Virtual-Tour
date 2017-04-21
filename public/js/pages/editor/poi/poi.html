@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div layout="column">
+    <div layout="row" layout-align="space-around center">
+      <md-input-container>
+        <md-select ng-model="ctrl.location" ng-change="ctrl.switchLocations()" aria-label="piclocation">
+          <md-option ng-value="location" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <div>
+      <ul class="list-group" style="list-style: none;">
+        <li class="list-group" ng-repeat="poi in ctrl.placesOfInterest">
+          <poi-editor poi="poi" locations="ctrl.locations" pictures="ctrl.pictures"></poi-editor>
+        </li>
+      </ul>
+    </div>
+    <div class="fab">
+      <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="addPicture" ng-click="ctrl.goToUpload()">
+        <md-tooltip md-direction="top">Add Place of Interest</md-tooltip>
+        <md-icon md-svg-src="../../../../images/add-white.svg"></md-icon>
+      </md-button>
+    </div>
+  </div>
+</div>

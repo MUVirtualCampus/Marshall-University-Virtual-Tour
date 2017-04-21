@@ -7,6 +7,9 @@ import pictureTemplate from './pictures/pictures.html!text';
 import uploadController from './pictures/upload-controller';
 import uploadTemplate from './pictures/upload.html!text';
 
+import poiController from './poi/poi-controller';
+import poiTemplate from './poi/poi.html!text';
+
 export default function editorRoute($stateProvider) {
 
   return $stateProvider
@@ -32,7 +35,14 @@ export default function editorRoute($stateProvider) {
       controller: uploadController,
       controllerAs: 'ctrl',
       resolve: uploadController.resolve()
-    });
+    })
+    .state('home.editor.poi', {
+      url: '/placesofinterest',
+      template: poiTemplate,
+      controller: poiController,
+      controllerAs: 'ctrl'
+    })
+    ;
 }
 
 editorRoute.$inject = ['$stateProvider'];

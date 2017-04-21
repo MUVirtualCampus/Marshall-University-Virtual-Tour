@@ -7,13 +7,12 @@ import pictureTemplate from './pictures/pictures.html!text';
 import uploadController from './pictures/upload-controller';
 import uploadTemplate from './pictures/upload.html!text';
 
-<<<<<<< HEAD
 import locationController from './locations/location-controller';
 import locationTemplate from './locations/locations.html!text';
-=======
+
 import poiController from './poi/poi-controller';
 import poiTemplate from './poi/poi.html!text';
->>>>>>> drew_dev
+
 
 export default function editorRoute($stateProvider) {
 
@@ -46,7 +45,7 @@ export default function editorRoute($stateProvider) {
       template: locationTemplate,
       controller: locationController,
       controllerAs: 'ctrl'
-    });
+    })
     .state('home.editor.poi', {
       url: '/placesofinterest',
       template: poiTemplate,

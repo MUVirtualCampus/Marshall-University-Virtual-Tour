@@ -50,6 +50,7 @@ export default class editorController {
 
     this.tabs = [
       { title: 'Images', state: 'home.editor.pictures'},
+      { title: 'Locations', state: 'home.editor.locations'},
       { title: 'Logout', state: 'home.login'},
     ];
   }

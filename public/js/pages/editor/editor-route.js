@@ -7,6 +7,9 @@ import pictureTemplate from './pictures/pictures.html!text';
 import uploadController from './pictures/upload-controller';
 import uploadTemplate from './pictures/upload.html!text';
 
+import locationController from './locations/location-controller';
+import locationTemplate from './locations/locations.html!text';
+
 export default function editorRoute($stateProvider) {
 
   return $stateProvider
@@ -32,6 +35,12 @@ export default function editorRoute($stateProvider) {
       controller: uploadController,
       controllerAs: 'ctrl',
       resolve: uploadController.resolve()
+    })
+    .state('home.editor.locations', {
+      url: '/locations',
+      template: locationTemplate,
+      controller: locationController,
+      controllerAs: 'ctrl'
     });
 }
 

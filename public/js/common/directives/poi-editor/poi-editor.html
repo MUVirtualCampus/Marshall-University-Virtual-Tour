@@ -4,40 +4,38 @@
     <div>
       <md-card>
         <md-card-content>
-          <form name="pictureForm">
+          <form name="poiForm">
 
             <div layout-gt-xs="row">
               <md-input-container flex-gt-sm>
                 <label>Location</label>
-                <md-select ng-model="ctrl.picture.location_id" aria-label="piclocation">
+                <md-select ng-model="ctrl.poi.location_id" aria-label="poilocation">
                   <md-option ng-value="location.location_id" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
                 </md-select>
               </md-input-container>
 
-              <md-input-container>
-                <label>Floor</label>
-                <input type="number" ng-model="ctrl.picture.floor" min="1" max="{{ctrl.maxFloor()}}" required>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Panorama Name</label>
+                <input ng-model="ctrl.poi.pano">
               </md-input-container>
 
-              <md-input-container>
-                <label>Heading</label>
-                <input ng-model="ctrl.picture.heading" required>
-              </md-input-container>
             </div>
 
             <div layout-gt-sm="row">
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Description</label>
-                <input ng-model="ctrl.picture.description" required>
-              </md-input-container>
+                <input ng-model="ctrl.poi.description">
+              </md-input-container>            
+            </div>
 
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Panorama Name</label>
-                <input ng-model="ctrl.picture.pano" required>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex>
+                <label>Quick Information</label>
+                <textarea ng-model="ctrl.picture.info" ng-value = "info" md-maxlength="500" rows="5" md-select-on-focus></textarea>
               </md-input-container>
             </div>
             <md-card-actions layout="row" layout-align="start center">
-              <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="pictureForm.$invalid || pictureForm.$pristine">Save</md-button>
+              <md-button class="md-raised md-primary" ng-click="ctrl.save()">Save</md-button>
               <md-button class="md-warn">Delete</md-button>
             </md-card-actions>
           </form>

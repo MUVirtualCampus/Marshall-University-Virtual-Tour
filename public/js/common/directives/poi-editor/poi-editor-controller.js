@@ -1,21 +1,21 @@
 import _ from 'lodash';
-import angular from 'angular';
-
-export default class PictureEditorController {
+export default class POIEditorController {
   static get $inject() {
-    return ['pictureService', '$scope', '$mdToast'];
+    return ['placeOfInterestService', 'pictureService', '$scope', '$mdToast'];
   }
 
-  constructor(pictureService, $scope, $mdToast) {
+  constructor(placeOfInterestService, pictureService, $scope, $mdToast) {
+    this.placeOfInterestService = placeOfInterestService;
     this.pictureService = pictureService;
-    this.picture = $scope.picture;
+    this.poi = $scope.poi;
+    this.picture = this.findPicture($scope.pictures);
     this.$mdToast = $mdToast
     this.locations = $scope.locations;
 
   }
 
   save() {
-    this.pictureService.update(this.picture)
+    this.placeOfInterestService.update(this.poi, this.picture.info)
       .then((response) => {
         let toastText;
         if(response.data.success === true) {
@@ -33,14 +33,8 @@ export default class PictureEditorController {
       });
   }
 
-  maxFloor() {
-    let location = _.find(this.locations, (item) => {return item.location_id === this.picture.location_id;});
-    if (!angular.isUndefined(location)) {
-      return location.floors;
-    }
-    else {
-      return 99;
-    }
+  findPicture(pictures) {
+    return _.find(pictures, (picture) => {return picture.picture_id === this.poi.picture_id;});
   }
 
 }

@@ -16,7 +16,7 @@ export default class TourController {
         }
       ],
       pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {
-        return pictureService.getPictures(location.location_id).then((results) => {
+        return pictureService.getPictures({location_id: location.location_id}).then((results) => {
             return results.data;
           });
         }
@@ -58,7 +58,7 @@ export default class TourController {
     this.floor = 1;
     this.picture = this.findLandingPicture();
     this.placesOfInterest = placesOfInterest;
-    document.getElementById('navMenu').addEventListener('click', () => {this.openSideNav()});
+    this.$scope.$on('open', () => this.openSideNav());
     this.initPano(this.picture);
 
   }

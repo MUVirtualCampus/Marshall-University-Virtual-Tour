@@ -13,7 +13,7 @@ export default class editorController {
         }
       ],
       pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {
-        return pictureService.getPictures(location.location_id).then((results) => {
+        return pictureService.getPictures({location_id: location.location_id}).then((results) => {
             return results.data;
           });
         }
@@ -35,10 +35,10 @@ export default class editorController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', '$auth', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$auth', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, $auth, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
+  constructor($scope, $state, $auth, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
     this.$auth = $auth;
@@ -47,10 +47,13 @@ export default class editorController {
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
     this.placesOfInterest = placesOfInterest;
+    this.$mdSidenav = $mdSidenav;
+    this.$scope.$on('open', () => this.openSideNav());
 
     this.tabs = [
       { title: 'Images', state: 'home.editor.pictures'},
       { title: 'Locations', state: 'home.editor.locations'},
+      { title: 'Places of Interest', state: 'home.editor.poi'},
       { title: 'Logout', state: 'home.login'},
     ];
   }
@@ -61,5 +64,10 @@ export default class editorController {
     }
     this.$state.go(tab.state);
   }
+
+  openSideNav(){
+        let nav = this.$mdSidenav('editorNav');
+        nav.toggle();
+      }
 
 }

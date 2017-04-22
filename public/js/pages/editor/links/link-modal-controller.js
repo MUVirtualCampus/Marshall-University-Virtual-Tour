@@ -1,70 +1,48 @@
 import _ from 'lodash';
-export default class UploadController {
+export default class LinkModalController {
 
-  static resolve() {
-    return {
-      location: ['$stateParams', 'locations', ($stateParams, locations) => {
-        if($stateParams.params === null) {
-          return '';
-        }
-        return _.find(locations, item => item.name === $stateParams.params.location);
-        }
-      ],
-      floor: ['$stateParams', ($stateParams) => {
-        if($stateParams.params === null) {
-          return '';
-        }
-        return parseInt($stateParams.params.floor);
-        }
-      ]
+  static get $inject() {
+    return ['$mdDialog', 'locations', 'location'];
+  }
+
+  constructor($mdDialog, locations, location){
+    this.$mdDialog = $mdDialog;
+    this.locations = locations;
+    this.location = location;
+    this.link = this.createNewLink();
+    this.pano1 = null;
+    this.pano2 = null;
+  }
+
+  createNewLink() {
+    let newLink = {};
+    newLink.first_picture_id = null;
+    newLink.second_picture_id = null;
+    newLink.location_id = this.location.location_id;
+    newLink.floor = null;
+    newLink.heading = 0;
+    return newLink;
+  }
+
+  maxFloor() {
+    if(!angular.isUndefined(this.location)) {
+      return this.location.floors;
+    }
+    else {
+      return 99;
     }
   }
 
-  static get $inject() {
-    return ['$scope', '$state', 'locationService', 'locations', 'location', 'floor', 'pictureService', 'Upload'];
+  switchLocation() {
+    this.location = _.find(this.locations, (item) => {return item.location_id === this.link.location_id;});
   }
 
-  constructor($scope, $state, locationService, locations, location, floor, pictureService, Upload){
-    this.$scope = $scope;
-    this.$state = $state;
-    this.locationService = locationService;
-    this.locations = locations;
-    this.Upload = Upload;
-    this.pictureService = pictureService;
-    this.location = location;
-    this.description = '';
-    this.floor = floor;
-    this.heading = '';
-    this.panoID = '';
-    this.info = '';
+  cancel() {
+    this.$mdDialog.cancel();
   }
 
-  uploadPanorama(file) {
-    this.Upload.upload({
-      url: 'https://api.imgur.com/3/image',
-      method: 'POST',
-      headers: {'Authorization': 'Client-ID 9802a051aa6be8e'},
-      data: {'image': file},
-    }).then((resp) => this.savePanorama(resp));
-  }
-
-  savePanorama(resp) {
-
-    var data = {
-      'location_id': this.location.location_id,
-      'floor': this.floor,
-      'description': this.description,
-      'heading': this.heading,
-      'url': resp.data.data.link,
-      'pano': this.panoID,
-      'info': this.info,
-      'is_landing': 0
-    };
-    this.pictureService.create(data);
-  }
-
-  backToPictures() {
-    this.$state.go('home.editor.pictures');
+  save() {
+    this.$mdDialog.hide(this.link);
   }
 
 }

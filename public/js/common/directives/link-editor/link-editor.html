@@ -4,41 +4,42 @@
     <div>
       <md-card>
         <md-card-content>
-          <form name="pictureForm">
+          <form name="linkForm">
 
             <div layout-gt-xs="row">
               <md-input-container flex-gt-sm>
                 <label>Location</label>
-                <md-select ng-model="ctrl.picture.location_id" aria-label="piclocation">
+                <md-select ng-model="ctrl.link.location_id" aria-label="linklocation" ng-change="ctrl.toggleCancel()">
                   <md-option ng-value="location.location_id" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
                 </md-select>
               </md-input-container>
 
               <md-input-container>
                 <label>Floor</label>
-                <input type="number" ng-model="ctrl.picture.floor" min="1" max="{{ctrl.maxFloor()}}" required>
+                <input type="number" ng-model="ctrl.link.floor" ng-change="ctrl.toggleCancel()" min="1" max="{{ctrl.maxFloor()}}" required>
               </md-input-container>
 
               <md-input-container>
                 <label>Heading</label>
-                <input type="number" ng-model="ctrl.picture.heading" required>
+                <input type="number" ng-model="ctrl.link.heading" ng-change="ctrl.toggleCancel()" required>
               </md-input-container>
             </div>
 
             <div layout-gt-sm="row">
               <md-input-container class="md-block" flex-gt-sm>
-                <label>Description</label>
-                <input ng-model="ctrl.picture.description" required>
+                <label>From Panorama</label>
+                <input ng-model="ctrl.pano1" ng-change="ctrl.toggleCancel()" required>
               </md-input-container>
 
               <md-input-container class="md-block" flex-gt-sm>
-                <label>Panorama Name</label>
-                <input ng-model="ctrl.picture.pano" required>
+                <label>To Panorama</label>
+                <input ng-model="ctrl.pano2" ng-change="ctrl.toggleCancel()" required>
               </md-input-container>
             </div>
             <md-card-actions layout="row" layout-align="start center">
-              <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="pictureForm.$invalid || pictureForm.$pristine">Save</md-button>
-              <md-button class="md-warn">Delete</md-button>
+              <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="linkForm.$invalid || !ctrl.showCancel">Save</md-button>
+              <md-button class="md-warn" ng-if="!ctrl.showCancel">Delete</md-button>
+              <md-button class="md-warn" ng-click="ctrl.cancel()" ng-if="ctrl.showCancel">Cancel</md-button>
             </md-card-actions>
           </form>
         </md-card-content>

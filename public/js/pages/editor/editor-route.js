@@ -1,6 +1,9 @@
 import editorController from './editor-controller';
 import editorTemplate from './editor.html!text';
 
+import linkController from './links/link-controller';
+import linkTemplate from './links/links.html!text';
+
 import pictureController from './pictures/picture-controller';
 import pictureTemplate from './pictures/pictures.html!text';
 
@@ -19,6 +22,12 @@ export default function editorRoute($stateProvider) {
       controller: editorController,
       controllerAs: 'ctrl',
       resolve: editorController.resolve()
+    })
+    .state('home.editor.links', {
+      url: '/links',
+      template: linkTemplate,
+      controller: linkController,
+      controllerAs: 'ctrl'
     })
     .state('home.editor.pictures', {
       url: '/images',

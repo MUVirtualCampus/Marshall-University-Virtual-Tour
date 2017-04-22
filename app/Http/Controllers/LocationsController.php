@@ -22,4 +22,17 @@ class LocationsController extends Controller
         return $locations;
       }
     }
+
+    public function update(Request $request)
+  {
+    $id = $request->input('location_id');
+    $location = Locations::where('location_id', $id)
+                         ->update([                            
+                            'name' => $request->input('name'),
+                            'description' => $request->input('description'),
+                            'floors' => $request->input('floors')
+                          ]);
+    return ['success' => true];
+
+  }
 }

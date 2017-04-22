@@ -9,10 +9,11 @@ export default class locationController {
     this.$scope = $scope;
     this.$state = $state;
     this.locations = locations;
+    this.show = true;
   }
 
-  goToUpload() {
-    this.$state.go('home.editor.upload', {params: {location: this.location.name, floor: this.floor}});
+  toggle() {
+    this.show = !this.show;
   }
 
 }

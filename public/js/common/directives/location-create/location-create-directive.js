@@ -3,7 +3,7 @@ import locationCreateTemplate from './location-create.html!text';
 
 export default class LocationCreate {
   static get directiveName() {
-    return 'locationEditor';
+    return 'locationCreate';
   }
 
   constructor() {
@@ -12,7 +12,7 @@ export default class LocationCreate {
     this.replace = true;
     this.template = locationCreateTemplate;
     this.scope = {
-      location: '='
+      location: '=', updateparent: '&'
     };
 
     this.controller = locationCreateController;

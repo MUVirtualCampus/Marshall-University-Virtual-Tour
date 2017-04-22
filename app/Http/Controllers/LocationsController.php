@@ -23,7 +23,7 @@ class LocationsController extends Controller
       }
     }
 
-    public function update(Request $request)
+  public function update(Request $request)
   {
     $id = $request->input('location_id');
     $location = Locations::where('location_id', $id)
@@ -34,5 +34,17 @@ class LocationsController extends Controller
                           ]);
     return ['success' => true];
 
+  }
+
+  public function create(Request $request)
+  {
+    Locations::create(array(
+        'location_id' => $request->get('location_id'),
+        'name' => $request->get('name'),
+        'description' => $request->get('description'),
+        'floors' => $request->get('floors')
+      ));
+
+    return ['success' => true];
   }
 }

@@ -12,7 +12,7 @@ export default class LocationCreate {
     this.replace = true;
     this.template = locationCreateTemplate;
     this.scope = {
-      location: '=', updateparent: '&'
+      location: '='
     };
 
     this.controller = locationCreateController;

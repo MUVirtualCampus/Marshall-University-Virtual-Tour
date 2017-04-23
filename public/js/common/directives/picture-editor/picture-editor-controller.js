@@ -9,8 +9,10 @@ export default class PictureEditorController {
   constructor(pictureService, $scope, $mdToast) {
     this.pictureService = pictureService;
     this.picture = $scope.picture;
+    this.original = _.cloneDeep($scope.picture);
     this.$mdToast = $mdToast
     this.locations = $scope.locations;
+    this.showCancel = false;
 
   }
 
@@ -20,6 +22,8 @@ export default class PictureEditorController {
         let toastText;
         if(response.data.success === true) {
          toastText = 'Success!';
+         this.original = _.cloneDeep(this.picture);
+         this.showCancel = false;
         }
         else {
           toastText = 'Update failed';
@@ -41,6 +45,16 @@ export default class PictureEditorController {
     else {
       return 99;
     }
+  }
+
+  cancel() {
+    this.picture = _.cloneDeep(this.original);
+    this.showCancel = false;
+  }
+
+  toggleCancel(){
+    if(this.showCancel === false)
+      this.showCancel = true;
   }
 
 }

@@ -29,6 +29,8 @@ export default class LinkEditorController {
         let toastText;
         if(response.data.success === true) {
          toastText = 'Success!';
+         this.original = _.cloneDeep(this.link);
+         this.showCancel = false;
         }
         else {
           toastText = 'Update failed';

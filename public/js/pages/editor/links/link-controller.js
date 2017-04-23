@@ -35,7 +35,7 @@ export default class linkController {
   }
 
   switchFloors() {
-    this.findPictures();
+    this.findLinks();
   }
 
   initFloors() {

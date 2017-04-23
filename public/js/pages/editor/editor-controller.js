@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class editorController {
   static resolve() {
     return {
@@ -9,7 +11,7 @@ export default class editorController {
 
       ],
       location: ['$stateParams', 'locations', ($stateParams, locations) => {
-        return locations[0];
+        return _.find(locations, item => item.name === $stateParams.name);
         }
       ],
       pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {

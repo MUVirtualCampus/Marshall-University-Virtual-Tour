@@ -17,7 +17,7 @@ export default function editorRoute($stateProvider) {
 
   return $stateProvider
     .state('home.editor', {
-      url: 'editor',
+      url: 'editor/{name}',
       template: editorTemplate,
       controller: editorController,
       controllerAs: 'ctrl',

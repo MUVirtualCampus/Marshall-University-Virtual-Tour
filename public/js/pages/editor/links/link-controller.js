@@ -3,11 +3,11 @@ import linkModalTemplate from './link-modal-template.html!text';
 export default class linkController {
 
   static get $inject(){
-    return ['$scope', '$state', '$mdDialog', '$mdToast', 'locations', 'pictures', 'pictureLinks', 'pictureLinkService', 'pictureService'];
+    return ['$stateParams', '$state', '$mdDialog', '$mdToast', 'locations', 'pictures', 'pictureLinks', 'pictureLinkService', 'pictureService'];
   }
 
-  constructor($scope, $state, $mdDialog, $mdToast, locations, pictures, pictureLinks, pictureLinkService, pictureService) {
-    this.$scope = $scope;
+  constructor($stateParams, $state, $mdDialog, $mdToast, locations, pictures, pictureLinks, pictureLinkService, pictureService) {
+    this.$stateParams = $stateParams;
     this.$state = $state;
     this.$modal = $mdDialog;
     this.$mdToast = $mdToast;
@@ -16,7 +16,7 @@ export default class linkController {
     this.allLinks = pictureLinks;
     this.pictureLinkService = pictureLinkService;
     this.pictureService = pictureService;
-    this.location = _.find(locations, (location) => {return location.location_id === 1});
+    this.location = _.find(locations, (location) => {return location.name === this.$stateParams.name});
     this.floors = this.initFloors();
     this.floor = this.floors.length > 0 ? this.floors[0] : null;
     this.errors = false;
@@ -31,7 +31,7 @@ export default class linkController {
   }
 
   switchLocations(){
-    console.log('Switch!');
+    this.$state.go('home.editor.links', {name:this.location.name});
   }
 
   switchFloors() {

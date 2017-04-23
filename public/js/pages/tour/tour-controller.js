@@ -38,15 +38,14 @@ export default class TourController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', '$timeout', '$mdDialog', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$mdDialog', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, $timeout, $mdDialog, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
+  constructor($scope, $state, $mdDialog, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
     this.$modal = $mdDialog;
     this.$mdSidenav = $mdSidenav;
-    this.$timeout = $timeout; //$timeout(() => {this.sideNav = $mdSidenav('left');}, false);
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
@@ -132,8 +131,7 @@ export default class TourController {
       }
 
       switchLocations() {
-        //TODO: Replace with code to change locations
-        console.log('Location changed!');
+        this.$state.go('home.tour', {name: this.location.name});
       }
 
       showFloors() {

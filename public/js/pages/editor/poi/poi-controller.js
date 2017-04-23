@@ -2,16 +2,16 @@ import _ from 'lodash';
 export default class poiController {
 
   static get $inject(){
-    return ['$scope', '$state', 'locations', 'placesOfInterest', 'pictures'];
+    return ['$stateParams', '$state', 'locations', 'placesOfInterest', 'pictures'];
   }
 
-  constructor($scope, $state, locations, placesOfInterest, pictures) {
-    this.$scope = $scope;
+  constructor($stateParams, $state, locations, placesOfInterest, pictures) {
+    this.$stateParams = $stateParams;
     this.$state = $state;
     this.locations = locations;
     this.placesOfInterest = placesOfInterest;
     this.pictures = pictures;
-    this.location = _.find(locations, (location) => {return location.location_id === 1});
+    this.location = _.find(locations, (location) => {return location.name === this.$stateParams.name});
   }
 
   goToUpload() {
@@ -19,7 +19,7 @@ export default class poiController {
   }
 
   switchLocations(){
-    console.log('Switch!');
+    this.$state.go('home.editor.poi', {name:this.location.name});
   }
 
 

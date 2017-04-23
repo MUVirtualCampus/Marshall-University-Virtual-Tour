@@ -18,6 +18,7 @@ import editorModule from './pages/editor/editor-module';
 import loginModule from './pages/login/login-module';
 import servicesModule from './app-services';
 import tourModule from './pages/tour/tour-module';
+import managementModule from './pages/management/management-module';
 
 let dependencies = [
   'angular-loading-bar',
@@ -36,7 +37,8 @@ let dependencies = [
   editorModule.name,
   loginModule.name,
   servicesModule.name,
-  tourModule.name
+  tourModule.name,
+  managementModule.name
 ];
 
 var app = angular.module('mutour', dependencies)

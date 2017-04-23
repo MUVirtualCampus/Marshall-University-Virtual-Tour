@@ -52,7 +52,8 @@ export default class editorController {
 
     this.tabs = [
       { title: 'Images', state: 'home.editor.pictures'},
-      { title: 'Logout', state: 'home.login'},
+      { title: 'User Management', state: 'home.management'},
+	  { title: 'Logout', state: 'home.login'},
     ];
   }
 

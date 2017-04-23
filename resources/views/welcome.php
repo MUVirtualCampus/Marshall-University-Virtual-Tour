@@ -15,7 +15,7 @@
 
   <script src="./build/system.js"></script>
   <script src="./config.js"></script>
-  <script src="./build.js"></script>
+  <!<script src="./build.js"></script>>
 
   <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgRdOHKYe3gFn40_exRpN-lVx0FgB4Vyo">

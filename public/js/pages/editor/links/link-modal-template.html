@@ -45,7 +45,12 @@
     </div>
   </md-dialog-content>
   <md-dialog-actions>
-    <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="newLinkForm.$invalid">Save</md-button>
+    <md-button class="md-raised md-primary" ng-click="ctrl.save(true)" ng-disabled="newLinkForm.$invalid">Save Link Pair
+      <md-tooltip md-direction="top">Saves this link and it's matching link from the opposite direction</md-tooltip>
+    </md-button>
+    <md-button  ng-click="ctrl.save(false)" ng-disabled="newLinkForm.$invalid">Save Link Only
+      <md-tooltip md-direction="top">Saves only this link. You'll need to add it's matching link manually.</md-tooltip>
+    </md-button>
     <md-button class="md-warn" ng-click="ctrl.cancel()">Cancel</md-button>
   </md-dialog-actions>
 </md-dialog>

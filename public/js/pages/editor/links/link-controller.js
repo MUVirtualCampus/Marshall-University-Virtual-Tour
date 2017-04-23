@@ -3,21 +3,27 @@ import linkModalTemplate from './link-modal-template.html!text';
 export default class linkController {
 
   static get $inject(){
-    return ['$scope', '$state', '$mdDialog', 'locations', 'pictures', 'pictureLinks', 'pictureLinkService'];
+    return ['$scope', '$state', '$mdDialog', '$mdToast', 'locations', 'pictures', 'pictureLinks', 'pictureLinkService', 'pictureService'];
   }
 
-  constructor($scope, $state, $mdDialog, locations, pictures, pictureLinks, pictureLinkService) {
+  constructor($scope, $state, $mdDialog, $mdToast, locations, pictures, pictureLinks, pictureLinkService, pictureService) {
     this.$scope = $scope;
     this.$state = $state;
     this.$modal = $mdDialog;
+    this.$mdToast = $mdToast;
     this.locations = locations;
     this.pictures = pictures;
     this.allLinks = pictureLinks;
     this.pictureLinkService = pictureLinkService;
+    this.pictureService = pictureService;
     this.location = _.find(locations, (location) => {return location.location_id === 1});
     this.floors = this.initFloors();
     this.floor = this.floors.length > 0 ? this.floors[0] : null;
+    this.errors = false;
+    this.errorText = '';
     this.findLinks();
+    this.newLink = null;
+    this.saveMatch = false;
   }
 
   goToUpload() {
@@ -56,21 +62,107 @@ export default class linkController {
             location: () => this.location
           }
         })
-            .then((newLink) => this.save(newLink));
+            .then((newLinks) => this.preSave(newLinks));
 
   }
 
-  save(newLink) {
-      debugger;
+  preSave(newLinks) {
+    this.newLink = _.cloneDeep(newLinks[0]);
+    if(this.newLink.location_id === this.location.location_id) {
+      this.checkSave(this.pictures);
+    }
+    else {
+      this.pictureService.getPictures({location_id: this.newLink.location_id})
+        .then((results) => {
+                            this.checkSave(results.data);
+                          });
+    }
+    if(newLinks[1] === true){
+      this.saveMatch = true;
+    }
   }
 
-   findId(pano) {
-    let picture = _.find(this.pictures, (item) => {return item.pano === pano;});
+  checkSave(picturesToUse) {
+    if(this.matchPanos(picturesToUse)) {
+      this.save();
+    } else {
+      this.$mdToast.show(
+            this.$mdToast.simple()
+           .textContent(this.errorText)
+           .position('bottom right')
+           .hideDelay(3000)
+      );
+      this.saveMatch = false;
+    }
+  }
+
+   findId(pano, picturesToUse) {
+    let picture = _.find(picturesToUse, (item) => {return item.pano === pano;});
     if(angular.isUndefined(picture)) {
       this.errors = true;
       return -1;
     }
     return picture.picture_id;
   }
+
+  matchPanos(picturesToUse) {
+    this.errors = false;
+    this.newLink.first_picture_id = this.findId(this.newLink.first_picture_id, picturesToUse);
+    if(this.errors) {
+      this.errorText = 'Invalid "From Panorama"';
+      return false;
+    }
+    this.newLink.second_picture_id = this.findId(this.newLink.second_picture_id, picturesToUse);
+    if(this.errors) {
+      this.errorText = 'Invalid "To Panorama"';
+      return false;
+    }
+    return true;
+  }
+
+  reverseHeading(heading) {
+    heading = heading + 180;
+    if(heading >= 360) {
+      heading = heading - 360;
+    }
+    return heading;
+  }
+
+  makeMatchingLink(oldLink){
+    let firstId = oldLink.first_picture_id;
+    oldLink.first_picture_id = oldLink.second_picture_id;
+    oldLink.second_picture_id = firstId;
+    oldLink.heading = this.reverseHeading(oldLink.heading);
+    return oldLink;
+  }
+
+  getMatch() {
+    if(this.saveMatch) {
+      this.newLink = this.makeMatchingLink(this.newLink);
+      this.save();
+    }
+    this.saveMatch = false;
+  }
+
+  save() {
+    this.pictureLinkService.create(this.newLink)
+        .then((response) => {
+        let toastText;
+        if(response.data.success === true) {
+         toastText = 'Success!';
+        }
+        else {
+          toastText = 'Update failed';
+        }
+         this.$mdToast.show(
+            this.$mdToast.simple()
+           .textContent(toastText)
+           .position('bottom right')
+           .hideDelay(3000)
+          );
+          this.getMatch();
+      });
+  }
+
 
 }

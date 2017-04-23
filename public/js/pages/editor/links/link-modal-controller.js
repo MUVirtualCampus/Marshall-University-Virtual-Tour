@@ -41,8 +41,11 @@ export default class LinkModalController {
     this.$mdDialog.cancel();
   }
 
-  save() {
-    this.$mdDialog.hide(this.link);
+  save(savePair) {
+    let saveItem = [];
+    saveItem.push(this.link);
+    saveItem.push(savePair);
+    this.$mdDialog.hide(saveItem);
   }
 
 }

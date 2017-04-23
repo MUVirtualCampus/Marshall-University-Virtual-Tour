@@ -1,7 +1,39 @@
 <div class="container-fluid">
   <div layout="column">
     <div>
-      <location-create location="location"></location-create>
+      <md-content>
+    	<div>
+      	  <md-card>
+            <md-card-content>
+              <form name="locationForm">
+                <div layout-gt-xs="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Description</label>
+                    <input ng-model="ctrl.location.description" required>
+                  </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                  <md-input-container>
+                    <label>Name</label>
+                    <input ng-model="ctrl.location.name" required>
+                  </md-input-container>
+
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Floors</label>
+                    <input ng-model="ctrl.location.floors" required>
+                  </md-input-container>
+
+                </div>
+                <md-card-actions layout="row" layout-align="start center">
+                  <md-button class="md-raised md-primary" ng-click="ctrl.create()" ng-disabled="locationForm.$invalid || locationForm.$pristine">Create</md-button>
+                  <md-button class="md-warn" ng-click='ctrl.cancel()'>Cancel</md-button>
+                </md-card-actions>
+              </form>
+            </md-card-content>
+          </md-card>
+        </div>
+      </md-content>
     </div>
     <div class="fab">
     </div>

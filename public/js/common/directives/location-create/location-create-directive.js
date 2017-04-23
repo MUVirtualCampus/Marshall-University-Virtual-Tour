@@ -12,9 +12,8 @@ export default class LocationCreate {
     this.replace = true;
     this.template = locationCreateTemplate;
     this.scope = {
-      location: '='
+      location: '=', cancel: '&'
     };
-
     this.controller = locationCreateController;
     this.controllerAs = 'ctrl';
   }

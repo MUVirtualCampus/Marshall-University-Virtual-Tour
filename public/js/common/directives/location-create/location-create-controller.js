@@ -6,6 +6,7 @@ export default class LocationCreateController {
   constructor(locationService, $scope, $mdToast) {
     this.locationService = locationService;
     this.location = $scope.location;
+    this.$scope = $scope;
     this.$mdToast = $mdToast;
   }
 
@@ -26,6 +27,10 @@ export default class LocationCreateController {
           .hideDelay(3000)
           );
       });
+  }
+
+  onCancel() {
+    this.$scope.cancel();
   }
 
 }

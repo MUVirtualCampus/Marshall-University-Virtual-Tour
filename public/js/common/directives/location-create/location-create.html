@@ -5,7 +5,6 @@
       <md-card>
         <md-card-content>
           <form name="locationForm">
-
             <div layout-gt-xs="row">
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Description</label>
@@ -26,8 +25,8 @@
 
             </div>
             <md-card-actions layout="row" layout-align="start center">
-              <md-button class="md-raised md-primary" ng-click="ctrl.create()" ng-disabled="locationForm.$invalid || locationForm.$pristine">Save</md-button>
-              <md-button class="md-warn">Cancel</md-button>
+              <md-button class="md-raised md-primary" ng-click="ctrl.create()" ng-disabled="locationForm.$invalid || locationForm.$pristine">Create</md-button>
+              <md-button class="md-warn" ng-click='ctrl.cancel()'>Cancel</md-button>
             </md-card-actions>
           </form>
         </md-card-content>

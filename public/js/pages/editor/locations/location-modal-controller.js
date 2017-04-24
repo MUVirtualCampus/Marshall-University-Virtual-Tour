@@ -30,11 +30,11 @@ export default class LocationModalController {
           .hideDelay(3000)
           );
       });
-      this.$mdDialog.cancel();
+      this.$mdDialog.hide(true);
   }
 
   cancel() {
-    this.$mdDialog.cancel();
+    this.$mdDialog.hide(false);
   }
 
 }

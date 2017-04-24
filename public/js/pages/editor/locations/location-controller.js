@@ -19,7 +19,13 @@ export default class locationController {
       controller: 'LocationModalController as ctrl',
       clickOutsideToClose: true,
       bindToController: false,
-    });
+    }).then((resp) => this.reloadPage(resp));
+  }
+
+  reloadPage(resp) {
+    if(resp === true) {
+      window.location.reload(true); 
+    } 
   }
 
 }

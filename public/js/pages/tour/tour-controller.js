@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import poiModalTemplate from './poi-modal.html!text';
 
 export default class TourController {
   static resolve() {
@@ -16,7 +15,7 @@ export default class TourController {
         }
       ],
       pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {
-        return pictureService.getPictures(location.location_id).then((results) => {
+        return pictureService.getPictures({location_id: location.location_id}).then((results) => {
             return results.data;
           });
         }
@@ -38,15 +37,13 @@ export default class TourController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', '$timeout', '$mdDialog', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, $timeout, $mdDialog, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
+  constructor($scope, $state, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
-    this.$modal = $mdDialog;
     this.$mdSidenav = $mdSidenav;
-    this.$timeout = $timeout; //$timeout(() => {this.sideNav = $mdSidenav('left');}, false);
     this.locationService = locationService;
     this.pictureService = pictureService;
     this.pictureLinkService = pictureLinkService;
@@ -58,7 +55,7 @@ export default class TourController {
     this.floor = 1;
     this.picture = this.findLandingPicture();
     this.placesOfInterest = placesOfInterest;
-    document.getElementById('navMenu').addEventListener('click', () => {this.openSideNav()});
+    this.$scope.$on('open', () => this.openSideNav());
     this.initPano(this.picture);
 
   }
@@ -132,8 +129,7 @@ export default class TourController {
       }
 
       switchLocations() {
-        //TODO: Replace with code to change locations
-        console.log('Location changed!');
+        this.$state.go('home.tour', {name: this.location.name});
       }
 
       showFloors() {
@@ -146,32 +142,6 @@ export default class TourController {
         });
 
         return landing;
-      }
-
-      openPOIModal(schedule) {
-        this.$modal.show({
-          template: poiModalTemplate,
-          controller: 'POIModalController as ctrl',
-          clickOutsideToClose:true,
-          bindToController: false,
-          resolve: {
-            placesOfInterest: () => this.placesOfInterest,
-            locations: () => this.locations,
-            location: () => this.location
-          }
-        })
-            .then((poi) => this.warp(poi));
-
-      }
-
-      warp(placeOfInterest){
-        //TODO: Change this to make it work with locations other than the current one
-        let picture = _.find(this.pictures, picture => {
-            return picture.picture_id === placeOfInterest.picture_id;
-          });
-
-        this.floor = picture.floor;
-        this.panorama.setPano(picture.pano);
       }
 
       openSideNav(){

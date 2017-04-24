@@ -31,6 +31,7 @@ System.config({
     "core-js": "npm:core-js@1.2.7",
     "font-awesome": "github:fortawesome/font-awesome@4.5.0",
     "lodash": "npm:lodash@4.0.1",
+    "ng-file-upload": "npm:ng-file-upload@12.2.13",
     "plugin-text": "github:systemjs/plugin-text@0.0.4",
     "satellizer": "npm:satellizer@0.15.5",
     "text": "github:systemjs/plugin-text@0.0.4",
@@ -104,6 +105,9 @@ System.config({
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:lodash@4.0.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:ng-file-upload@12.2.13": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:path-browserify@0.0.0": {

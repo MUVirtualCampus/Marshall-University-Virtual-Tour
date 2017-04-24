@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class editorController {
   static resolve() {
     return {
@@ -9,11 +11,11 @@ export default class editorController {
 
       ],
       location: ['$stateParams', 'locations', ($stateParams, locations) => {
-        return locations[0];
+        return _.find(locations, item => item.name === $stateParams.name);
         }
       ],
       pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {
-        return pictureService.getPictures(location.location_id).then((results) => {
+        return pictureService.getPictures({location_id: location.location_id}).then((results) => {
             return results.data;
           });
         }
@@ -35,17 +37,39 @@ export default class editorController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$auth', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
+  constructor($scope, $state, $auth, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
+    this.$auth = $auth;
     this.locations = locations;
     this.location = location;
     this.pictures = pictures;
     this.pictureLinks = pictureLinks;
     this.placesOfInterest = placesOfInterest;
+    this.$mdSidenav = $mdSidenav;
+    this.$scope.$on('open', () => this.openSideNav());
+
+    this.tabs = [
+      { title: 'Images', state: 'home.editor.pictures'},
+      { title: 'Image Links', state: 'home.editor.links'},
+      { title: 'Places of Interest', state: 'home.editor.poi'},
+      { title: 'Logout', state: 'home.login'},
+    ];
   }
+
+  transitionTo(tab) {
+    if(tab.title === 'Logout') {
+      this.$auth.logout();
+    }
+    this.$state.go(tab.state);
+  }
+
+  openSideNav(){
+        let nav = this.$mdSidenav('editorNav');
+        nav.toggle();
+      }
 
 }

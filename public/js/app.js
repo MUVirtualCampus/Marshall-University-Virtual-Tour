@@ -9,6 +9,7 @@ import 'angular-bootstrap';
 import 'angular-ui-select';
 import 'angular-bootstrap-colorpicker';
 import 'satellizer';
+import 'ng-file-upload';
 
 import homeModule from './pages/home-module';
 import dashboardModule from './pages/dashboard/dashboard-module';
@@ -28,6 +29,7 @@ let dependencies = [
   'colorpicker.module',
   'ui.select',
   'satellizer',
+  'ngFileUpload',
   homeModule.name,
   dashboardModule.name,
   directivesModule.name,

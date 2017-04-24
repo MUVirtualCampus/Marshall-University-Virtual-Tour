@@ -20,6 +20,7 @@ class CreatePictureLinksTable extends Migration
           $table->integer('location_id')->unsigned();
           $table->integer('floor')->nullable();
           $table->integer('heading');
+          $table->unique(['first_picture_id', 'second_picture_id']);
         });
     }
 

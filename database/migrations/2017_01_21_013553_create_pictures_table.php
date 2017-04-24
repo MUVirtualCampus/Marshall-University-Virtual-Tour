@@ -20,7 +20,7 @@ class CreatePicturesTable extends Migration
           $table->string('description');
           $table->integer('heading');
           $table->string('url');
-          $table->string('pano');
+          $table->string('pano')->unique();
           $table->string('info')->nullable();
           $table->bit('is_landing');
         });

@@ -51,4 +51,27 @@ class PlacesOfInterestController extends Controller
     }
 
   }
+
+  public function create(Request $request)
+  {
+    try
+    {
+      $poi = PlacesOfInterest::create(array(
+          'location_id' => $request->get('location_id'),
+          'pano' => $request->get('pano'),
+          'description' => $request->get('description'),
+          'picture_id' => $request->get('picture_id')
+        ));
+      $picture = Pictures::where('picture_id', $request->input('picture_id'))
+                          ->update([
+                            'info' => $request->input('info')
+                          ]);
+        return ['success' => true];
+    }
+
+    catch(\Exception $e)
+    {
+      return ['success' => false];
+    }
+  }
 }

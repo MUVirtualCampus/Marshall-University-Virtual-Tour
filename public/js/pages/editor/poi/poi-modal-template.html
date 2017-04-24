@@ -1,0 +1,48 @@
+<md-dialog aria-label="modal" style="width:45%">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>Create New Place of Interest</h3>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="modal-body">
+      <form name="newPoiForm" novalidate show-validation>
+
+         <div layout-gt-xs="row">
+              <md-input-container flex-gt-sm>
+                <label>Location</label>
+                <md-select ng-model="ctrl.poi.location_id" aria-label="poilocation">
+                  <md-option ng-value="location.location_id" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
+                </md-select>
+              </md-input-container>
+         </div>
+
+         <div layout-gt-xs="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Panorama Name</label>
+                <input ng-model="ctrl.poi.pano" required>
+              </md-input-container>
+        </div>
+
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Description</label>
+                <input ng-model="ctrl.poi.description" required>
+              </md-input-container>            
+            </div>
+
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex>
+                <label>Quick Information</label>
+                <textarea ng-model="ctrl.poi.info" ng-value = "info" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+              </md-input-container>
+            </div>
+      </form>
+
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="newPoiForm.$invalid">Save</md-button>
+    <md-button class="md-warn" ng-click="ctrl.cancel()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

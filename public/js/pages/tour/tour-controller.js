@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import poiModalTemplate from './poi-modal.html!text';
 
 export default class TourController {
   static resolve() {
@@ -38,13 +37,12 @@ export default class TourController {
   }
 
   static get $inject(){
-    return ['$scope', '$state', '$mdDialog', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
+    return ['$scope', '$state', '$mdSidenav', 'locationService', 'pictureService', 'pictureLinkService', 'locations', 'location', 'pictures', 'pictureLinks', 'placesOfInterest'];
   }
 
-  constructor($scope, $state, $mdDialog, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
+  constructor($scope, $state, $mdSidenav, locationService, pictureService, pictureLinkService, locations, location, pictures, pictureLinks, placesOfInterest) {
     this.$scope = $scope;
     this.$state = $state;
-    this.$modal = $mdDialog;
     this.$mdSidenav = $mdSidenav;
     this.locationService = locationService;
     this.pictureService = pictureService;
@@ -144,32 +142,6 @@ export default class TourController {
         });
 
         return landing;
-      }
-
-      openPOIModal(schedule) {
-        this.$modal.show({
-          template: poiModalTemplate,
-          controller: 'POIModalController as ctrl',
-          clickOutsideToClose:true,
-          bindToController: false,
-          resolve: {
-            placesOfInterest: () => this.placesOfInterest,
-            locations: () => this.locations,
-            location: () => this.location
-          }
-        })
-            .then((poi) => this.warp(poi));
-
-      }
-
-      warp(placeOfInterest){
-        //TODO: Change this to make it work with locations other than the current one
-        let picture = _.find(this.pictures, picture => {
-            return picture.picture_id === placeOfInterest.picture_id;
-          });
-
-        this.floor = picture.floor;
-        this.panorama.setPano(picture.pano);
       }
 
       openSideNav(){

@@ -55,7 +55,20 @@ export default class UploadController {
       'is_landing': 0
     };
     this.pictureService.create(data)
-      .then((response) => this.createPoi(response));
+      .then((response) => {
+        let toastText;
+        if(response.data.success === true) {
+          this.createPoi(response);
+        } else {
+          toastText = 'Creation failed! Please try again!';
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent(toastText)
+              .position('bottom right')
+              .hideDelay(3000)
+            );
+        }
+    });
   }
 
   createPoi(response) {
@@ -66,7 +79,23 @@ export default class UploadController {
       'picture_id': response.data.picture_id,
       'info': this.info
     };
-    this.placeOfInterestService.create(poi);
+    this.placeOfInterestService.create(poi)
+      .then((response) => {
+        let toastText;
+        if(response.data.success === true) {
+          toastText = 'Success!';
+        }
+        else {
+          toastText = 'Creation failed! Please try again!';
+        }
+        this.$mdToast.show(
+          this.$mdToast.simple()
+          .textContent(toastText)
+          .position('bottom right')
+          .hideDelay(3000)
+          );
+      });
+    this.$state.go('home.editor.poi');
   }
 
   backToPictures() {

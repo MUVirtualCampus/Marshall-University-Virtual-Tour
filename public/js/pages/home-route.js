@@ -1,7 +1,7 @@
 import template from './home.html!text';
-import helpTemplate from './help.html!text'
+import helpTemplate from './help.html!text';
 
-import helpController from './help-controller'
+import HelpController from './help-controller'
 
 function homeRoute($stateProvider, $urlRouterProvider) {
 
@@ -16,9 +16,9 @@ function homeRoute($stateProvider, $urlRouterProvider) {
       controller: 'HomeController as ctrl',
     })
      .state('home.help', {
-      url: '/help',
+      url: 'help',
       template: helpTemplate,
-      controller: helpController,
+      controller: HelpController,
       controllerAs: 'ctrl'
     });
 

@@ -1,26 +1,7 @@
 import _ from 'lodash';
+import angular from 'angular';
 
-export default class UploadController {
-
-  static resolve() {
-    return {
-      location: ['$stateParams', 'locations', ($stateParams, locations) => {
-        if($stateParams.params === null) {
-          return '';
-        }
-        return _.find(locations, item => item.name === $stateParams.params.location);
-        }
-      ],
-      floor: ['$stateParams', ($stateParams) => {
-        if($stateParams.params === null) {
-          return '';
-        }
-        return parseInt($stateParams.params.floor);
-        }
-      ]
-    }
-  }
-
+export default class PictureUploadController {
   static get $inject() {
     return ['$scope', '$state', 'locationService', 'locations', 'location', 'floor', 'pictureService', 'Upload'];
   }
@@ -67,5 +48,4 @@ export default class UploadController {
   backToPictures() {
     this.$state.go('home.editor.pictures');
   }
-
 }

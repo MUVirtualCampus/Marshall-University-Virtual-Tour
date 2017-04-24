@@ -1,4 +1,5 @@
 import _ from 'lodash';
+
 export default class UploadController {
 
   static resolve() {
@@ -21,50 +22,55 @@ export default class UploadController {
   }
 
   static get $inject() {
-    return ['$scope', '$state', 'locationService', 'locations', 'location', 'floor', 'pictureService', 'Upload'];
+    return ['$scope', '$state', '$mdToast', 'locationService', 'locations', 'location', 'pictureService', 'placeOfInterestService'];
   }
 
-  constructor($scope, $state, locationService, locations, location, floor, pictureService, Upload){
+  constructor($scope, $state, $mdToast, locationService, locations, location, pictureService, placeOfInterestService){
     this.$scope = $scope;
     this.$state = $state;
+    this.$mdToast = $mdToast;
     this.locationService = locationService;
     this.locations = locations;
-    this.Upload = Upload;
     this.pictureService = pictureService;
+    this.placeOfInterestService = placeOfInterestService;
     this.location = location;
     this.description = '';
-    this.floor = floor;
+    this.floor = '';
     this.heading = '';
+    this.url = '';
     this.panoID = '';
     this.info = '';
   }
 
-  uploadPanorama(file) {
-    this.Upload.upload({
-      url: 'https://api.imgur.com/3/image',
-      method: 'POST',
-      headers: {'Authorization': 'Client-ID 9802a051aa6be8e'},
-      data: {'image': file},
-    }).then((resp) => this.savePanorama(resp));
-  }
-
-  savePanorama(resp) {
+  savePanorama() {
 
     var data = {
       'location_id': this.location.location_id,
       'floor': this.floor,
       'description': this.description,
       'heading': this.heading,
-      'url': resp.data.data.link,
+      'url': this.url,
       'pano': this.panoID,
       'info': this.info,
       'is_landing': 0
     };
-    this.pictureService.create(data);
+    this.pictureService.create(data)
+      .then((response) => this.createPoi(response));
+  }
+
+  createPoi(response) {
+    var poi = {
+      'location_id': this.location.location_id,
+      'pano': this.panoID,
+      'description': this.description,
+      'picture_id': response.data.picture_id,
+      'info': this.info
+    };
+    this.placeOfInterestService.create(poi);
   }
 
   backToPictures() {
-    this.$state.go('home.editor.pictures');
+    this.$state.go('home.editor.poi');
   }
 
 }

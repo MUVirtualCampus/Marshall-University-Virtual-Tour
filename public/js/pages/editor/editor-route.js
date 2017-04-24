@@ -13,6 +13,9 @@ import locationTemplate from './locations/locations.html!text';
 import poiController from './poi/poi-controller';
 import poiTemplate from './poi/poi.html!text';
 
+import poiUploadController from './poi/upload-controller';
+import poiUploadTemplate from './poi/upload.html!text';
+
 
 export default function editorRoute($stateProvider) {
 
@@ -51,6 +54,16 @@ export default function editorRoute($stateProvider) {
       template: poiTemplate,
       controller: poiController,
       controllerAs: 'ctrl'
+    })
+    .state('home.editor.uploadPoi', {
+      url: '/placesofinterest/upload',
+      params: {
+        params: null
+      },
+      template: poiUploadTemplate,
+      controller: poiUploadController,
+      controllerAs: 'ctrl',
+      resolve: poiUploadController.resolve()
     });
 }
 

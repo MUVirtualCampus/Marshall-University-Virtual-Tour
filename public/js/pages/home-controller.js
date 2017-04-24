@@ -9,8 +9,9 @@ class HomeController {
   goToDashboard(){
     this.$state.go('home.dashboard');
   }
-
+//my shit
   goToHints(){
+    console.log("IM IN HERE");
     this.$state.go('home.help');
   }
 

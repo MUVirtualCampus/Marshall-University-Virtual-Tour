@@ -22,46 +22,54 @@ export default class UploadController {
   }
 
   static get $inject() {
-    return ['$scope', '$state', 'locationService', 'locations', 'location', 'floor', 'pictureService', 'Upload'];
+    return ['$scope', '$state', '$mdToast', 'locationService', 'locations', 'location', 'floor', 'pictureService'];
   }
 
-  constructor($scope, $state, locationService, locations, location, floor, pictureService, Upload){
+  constructor($scope, $state, $mdToast, locationService, locations, location, floor, pictureService){
     this.$scope = $scope;
     this.$state = $state;
+    this.$mdToast = $mdToast;
     this.locationService = locationService;
     this.locations = locations;
-    this.Upload = Upload;
     this.pictureService = pictureService;
     this.location = location;
     this.description = '';
     this.floor = floor;
     this.heading = '';
+    this.url = '';
     this.panoID = '';
     this.info = '';
   }
 
-  uploadPanorama(file) {
-    this.Upload.upload({
-      url: 'https://api.imgur.com/3/image',
-      method: 'POST',
-      headers: {'Authorization': 'Client-ID 7f19fd5f1603734'},
-      data: {'image': file},
-    }).then((resp) => this.savePanorama(resp));
-  }
-
-  savePanorama(resp) {
+  savePanorama() {
 
     var data = {
       'location_id': this.location.location_id,
       'floor': this.floor,
       'description': this.description,
       'heading': this.heading,
-      'url': resp.data.data.link,
+      'url': this.url,
       'pano': this.panoID,
       'info': this.info,
       'is_landing': 0
     };
-    this.pictureService.create(data).then((resp) => this.showCustomToast(resp));
+    this.pictureService.create(data)
+      .then((response) => {
+        let toastText;
+        if(response.data.success === true) {
+          toastText = 'Success!';
+        }
+        else {
+          toastText = 'Creation failed! Please try again!';
+        }
+        this.$mdToast.show(
+          this.$mdToast.simple()
+          .textContent(toastText)
+          .position('bottom right')
+          .hideDelay(3000)
+          );
+      });
+    this.$state.go('home.editor.pictures');
   }
 
   backToPictures() {

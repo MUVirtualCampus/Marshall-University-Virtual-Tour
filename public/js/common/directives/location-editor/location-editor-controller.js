@@ -6,7 +6,9 @@ export default class LocationEditorController {
   constructor(locationService, $scope, $mdToast) {
     this.locationService = locationService;
     this.location = $scope.location;
+    this.original = _.cloneDeep($scope.location);
     this.$mdToast = $mdToast;
+    this.showCancel = false;
   }
 
   save() {
@@ -15,6 +17,8 @@ export default class LocationEditorController {
         let toastText;
         if(response.data.success === true) {
           toastText = 'Success!';
+          this.original = _.cloneDeep(this.location);
+          this.showCancel = false;
         }
         else {
           toastText = 'Update failed';
@@ -28,4 +32,13 @@ export default class LocationEditorController {
       });
   }
 
+  cancel() {
+    this.location = _.cloneDeep(this.original);
+    this.showCancel = false;
+  }
+
+  toggleCancel() {
+    if(this.showCancel === false)
+    this.showCancel = true;
+  }
 }

@@ -9,30 +9,31 @@
             <div layout-gt-xs="row">
               <md-input-container flex-gt-sm>
                 <label>Location</label>
-                <input ng-model="ctrl.location.location_id" ng-disabled="true" required>
+                <input ng-model="ctrl.location.location_id" ng-disabled="true" required ng-change="ctrl.toggleCancel()">
               </md-input-container>
 
               <md-input-container>
                 <label>Name</label>
-                <input ng-model="ctrl.location.name" required>
+                <input ng-model="ctrl.location.name" required ng-change="ctrl.toggleCancel()">
               </md-input-container>
 
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Floors</label>
-                <input ng-model="ctrl.location.floors" required>
+                <input ng-model="ctrl.location.floors" required ng-change="ctrl.toggleCancel()">
               </md-input-container>
             </div>
 
             <div layout-gt-sm="row">
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Description</label>
-                <input ng-model="ctrl.location.description" required>
+                <input ng-model="ctrl.location.description" required ng-change="ctrl.toggleCancel()">
               </md-input-container>
 
             </div>
             <md-card-actions layout="row" layout-align="start center">
-              <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="locationForm.$invalid || locationForm.$pristine">Save</md-button>
-              <!--<md-button class="md-warn">Delete</md-button>-->
+              <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="locationForm.$invalid || !ctrl.showCancel">Save</md-button>
+              <md-button class="md-warn" ng-if="!ctrl.showCancel">Delete</md-button>
+              <md-button class="md-warn" ng-click="ctrl.cancel()" ng-if="ctrl.showCancel">Cancel</md-button>
             </md-card-actions>
           </form>
         </md-card-content>

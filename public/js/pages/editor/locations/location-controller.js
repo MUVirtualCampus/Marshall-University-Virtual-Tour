@@ -24,7 +24,7 @@ export default class locationController {
 
   reloadPage(resp) {
     if(resp === true) {
-      window.location.reload(true); 
+      this.$state.reload(); 
     } 
   }
 

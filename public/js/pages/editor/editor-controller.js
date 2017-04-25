@@ -53,9 +53,9 @@ export default class editorController {
     this.$scope.$on('open', () => this.openSideNav());
 
     this.tabs = [
+      { title: 'Locations', state: 'home.editor.locations'},
       { title: 'Images', state: 'home.editor.pictures'},
       { title: 'Image Links', state: 'home.editor.links'},
-      { title: 'Locations', state: 'home.editor.locations'},
       { title: 'Places of Interest', state: 'home.editor.poi'},
       { title: 'Logout', state: 'home.login'},
     ];

@@ -95,7 +95,7 @@ export default class UploadController {
           .hideDelay(3000)
           );
       });
-    this.$state.go('home.editor.poi');
+    this.$state.go('home.editor.poi', {},{reload:true});
   }
 
   backToPictures() {

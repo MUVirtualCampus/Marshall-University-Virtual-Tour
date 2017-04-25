@@ -163,6 +163,7 @@ export default class linkController {
           );
           this.getMatch();
       });
+      this.$state.reload();
   }
 
 

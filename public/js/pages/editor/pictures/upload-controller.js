@@ -69,7 +69,7 @@ export default class UploadController {
           .hideDelay(3000)
           );
       });
-    this.$state.go('home.editor.pictures');
+    this.$state.go('home.editor.pictures', {},{reload:true});
   }
 
   backToPictures() {

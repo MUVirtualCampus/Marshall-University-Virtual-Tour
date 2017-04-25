@@ -14,7 +14,7 @@ class loginController {
 
     this.$auth.login(credentials).then((data) => {
 
-      this.$state.go('home.editor.pictures', {name:'waec'});
+      this.$state.go('home.editor.locations', {name:'waec'});
     })
     .catch((response) => {
       this.$mdToast.show(

@@ -58,18 +58,18 @@ class PicturesController extends Controller
   {
     try
     {
-      Pictures::create(array(
-          'location_id' => $request->get('location_id'),
-          'floor' => $request->get('floor'),
-          'description' => $request->get('description'),
-          'heading' => $request->get('heading'),
-          'url' => $request->get('url'),
-          'pano' => $request->get('pano'),
-          'info' => $request->get('info'),
-          'is_landing' => $request->get('is_landing')
-        ));
+      $picture = Pictures::create(array(
+        'location_id' => $request->get('location_id'),
+        'floor' => $request->get('floor'),
+        'description' => $request->get('description'),
+        'heading' => $request->get('heading'),
+        'url' => $request->get('url'),
+        'pano' => $request->get('pano'),
+        'info' => $request->get('info'),
+        'is_landing' => $request->get('is_landing')
+      ));
 
-      return ['success' => true];
+    return ['success' => true, 'picture_id' => $picture->picture_id];
     }
     catch(\Exception $e)
     {

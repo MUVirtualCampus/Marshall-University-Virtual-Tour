@@ -21,7 +21,7 @@ export default class poiController {
   }
 
   goToUpload() {
-    this.$state.go('home.editor.upload', {params: {location: this.location.name, floor: this.floor}});
+    this.$state.go('home.editor.uploadPoi', {params: {location: this.location.name, floor: this.floor}});
   }
 
   openNewPOIModal() {

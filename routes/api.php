@@ -24,3 +24,5 @@ Route::get('placesofinterest/{location_id?}', 'PlacesOfInterestController@getPla
 Route::post('placesofinterest/create', 'PlacesOfInterestController@create');
 Route::patch('placesofinterest', 'PlacesOfInterestController@update');
 Route::post('authenticate', 'AuthenticateController@authenticate');
+Route::patch('locations', 'LocationsController@update');
+Route::post('locations/create', 'LocationsController@create');

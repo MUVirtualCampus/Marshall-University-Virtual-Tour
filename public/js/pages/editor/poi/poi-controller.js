@@ -39,8 +39,8 @@ export default class poiController {
 
   }
 
-  switchLocations(){
-    this.$state.go('home.editor.poi', {name:this.location.name});
+  switchLocations(loc){
+    this.$state.go('home.editor.poi', {name:loc.name});
   }
 
 

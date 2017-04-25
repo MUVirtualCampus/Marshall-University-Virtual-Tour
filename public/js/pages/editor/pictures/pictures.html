@@ -1,16 +1,30 @@
 <div class="container-fluid">
   <div layout="column">
+    <h3>Image Editor</h3>
+    <md-divider></md-divider>
     <div layout="row" layout-align="space-around center">
-      <md-input-container>
-        <md-select ng-model="ctrl.location" ng-change="ctrl.switchLocations()" aria-label="piclocation">
-          <md-option ng-value="location" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container>
-        <md-select ng-model="ctrl.floor" ng-change="ctrl.switchFloors()" ng-if="ctrl.floor != null" aria-label="picfloor">
-          <md-option ng-value="floor" ng-repeat="floor in ctrl.floors">Floor {{floor}}</md-option>
-        </md-select>
-      </md-input-container>
+      <h4>Filter By:</h4>
+      <md-menu>
+        <md-button class="md-raised" ng-click="$mdOpenMenu()">Location</md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="location in ctrl.locations">
+            <md-button ng-click="ctrl.switchLocations(location)">
+             {{location.description}}
+           </md-button>
+         </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+      <md-menu>
+        <md-button class="md-raised" ng-click="$mdOpenMenu()">Floor</md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="floor in ctrl.floors">
+            <md-button ng-click="ctrl.switchFloors(floor)">
+             Floor {{floor}}
+           </md-button>
+         </md-menu-item>
+        </md-menu-content>
+      </md-menu>
     </div>
     <div>
       <ul class="list-group" style="list-style: none;">

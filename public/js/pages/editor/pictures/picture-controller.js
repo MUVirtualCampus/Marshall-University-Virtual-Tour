@@ -21,11 +21,12 @@ export default class pictureController {
     this.$state.go('home.editor.upload', {params: {location: this.location.name, floor: this.floor}});
   }
 
-  switchLocations(){
-    this.$state.go('home.editor.pictures', {name:this.location.name});
+  switchLocations(loc){
+    this.$state.go('home.editor.pictures', {name:loc.name});
   }
 
-  switchFloors() {
+  switchFloors(floor) {
+    this.floor = floor;
     this.findPictures();
   }
 

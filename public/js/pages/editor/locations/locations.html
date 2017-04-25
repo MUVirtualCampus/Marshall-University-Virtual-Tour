@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div layout="column">
+    <h3>Location Editor</h3>
+    <md-divider></md-divider>
+    <div>
+      <ul class="list-group" style="list-style: none;">
+        <li class="list-group" ng-repeat="location in ctrl.locations">
+          <location-editor location="location"></location-editor>
+        </li>
+      </ul>
+    </div>
+    <div class="fab">
+      <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="addPicture" ng-click="ctrl.openNewLocationModal()">
+      <md-tooltip md-direction="top">Add New Location</md-tooltip>
+        <md-icon md-svg-src="../../../../images/add-white.svg"></md-icon>
+      </md-button>
+    </div>
+  </div>
+</div>

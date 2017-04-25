@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class editorController {
   static resolve() {
     return {
@@ -9,11 +11,11 @@ export default class editorController {
 
       ],
       location: ['$stateParams', 'locations', ($stateParams, locations) => {
-        return locations[0];
+        return _.find(locations, item => item.name === $stateParams.name);
         }
       ],
       pictures: ['$stateParams', 'pictureService', 'location', ($stateParams, pictureService, location) => {
-        return pictureService.getPictures(location.location_id).then((results) => {
+        return pictureService.getPictures({location_id: location.location_id}).then((results) => {
             return results.data;
           });
         }
@@ -51,7 +53,10 @@ export default class editorController {
     this.$scope.$on('open', () => this.openSideNav());
 
     this.tabs = [
+      { title: 'Locations', state: 'home.editor.locations'},
       { title: 'Images', state: 'home.editor.pictures'},
+      { title: 'Image Links', state: 'home.editor.links'},
+      { title: 'Places of Interest', state: 'home.editor.poi'},
       { title: 'Logout', state: 'home.login'},
     ];
   }

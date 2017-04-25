@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div layout="column">
+    <h3>Image Link Editor</h3>
+    <md-divider></md-divider>
+    <div layout="row" layout-align="space-around center">
+      <h4>Filter By:</h4>
+      <md-menu>
+        <md-button class="md-raised" ng-click="$mdOpenMenu()">Location</md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="location in ctrl.locations">
+            <md-button ng-click="ctrl.switchLocations(location)">
+             {{location.description}}
+           </md-button>
+         </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+      <md-menu>
+        <md-button class="md-raised" ng-click="$mdOpenMenu()">Floor</md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="floor in ctrl.floors">
+            <md-button ng-click="ctrl.switchFloors(floor)">
+             Floor {{floor}}
+           </md-button>
+         </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+    </div>
+    <div>
+      <ul class="list-group" style="list-style: none;">
+        <li class="list-group" ng-repeat="link in ctrl.pictureLinks">
+          <link-editor link="link" locations="ctrl.locations" pictures="ctrl.pictures"></link-editor>
+        </li>
+      </ul>
+    </div>
+    <div class="fab">
+      <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="addLink" ng-click="ctrl.openNewLinkModal()">
+        <md-tooltip md-direction="top">Add New Link</md-tooltip>
+        <md-icon md-svg-src="../../../../images/add-white.svg"></md-icon>
+      </md-button>
+    </div>
+  </div>
+</div>

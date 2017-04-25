@@ -1,0 +1,37 @@
+<md-dialog aria-label="modal" style="width:45%">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>Create Location</h3>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="modal-body">
+      <form name="locationForm">
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Description</label>
+            <input ng-model="ctrl.location.description" required>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container>
+            <label>Name</label>
+            <input ng-model="ctrl.location.name" required>
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Floors</label>
+            <input ng-model="ctrl.location.floors" type="number" min="1" required>
+          </md-input-container>
+
+        </div>
+      </form>
+
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ctrl.create()" ng-disabled="newPoiForm.$invalid">Save</md-button>
+    <md-button class="md-warn" ng-click="ctrl.cancel()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

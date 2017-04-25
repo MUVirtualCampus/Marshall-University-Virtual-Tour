@@ -11,7 +11,7 @@ export default class BaseService {
   update(data, path) {
     return this.$http({
                 method: 'PATCH',
-                url: '/api/' + this.path + '/',
+                url: '/api/' + this.path,
                 headers: {'Content-Type' : 'application/json' },
                 data: JSON.stringify(data)
               });

@@ -9,36 +9,37 @@
             <div layout-gt-xs="row">
               <md-input-container flex-gt-sm>
                 <label>Location</label>
-                <md-select ng-model="ctrl.picture.location_id" aria-label="piclocation">
+                <md-select ng-model="ctrl.picture.location_id" aria-label="piclocation" ng-change="ctrl.toggleCancel()">
                   <md-option ng-value="location.location_id" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
                 </md-select>
               </md-input-container>
 
               <md-input-container>
                 <label>Floor</label>
-                <input ng-model="ctrl.picture.floor">
+                <input type="number" ng-model="ctrl.picture.floor" min="1" max="{{ctrl.maxFloor()}}" ng-change="ctrl.toggleCancel()" required>
               </md-input-container>
 
               <md-input-container>
                 <label>Heading</label>
-                <input ng-model="ctrl.picture.heading">
+                <input type="number" ng-model="ctrl.picture.heading" ng-change="ctrl.toggleCancel()" required>
               </md-input-container>
             </div>
 
             <div layout-gt-sm="row">
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Description</label>
-                <input ng-model="ctrl.picture.description">
+                <input ng-model="ctrl.picture.description" ng-change="ctrl.toggleCancel()" required>
               </md-input-container>
 
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Panorama Name</label>
-                <input ng-model="ctrl.picture.pano">
+                <input ng-model="ctrl.picture.pano" ng-change="ctrl.toggleCancel()" required>
               </md-input-container>
             </div>
             <md-card-actions layout="row" layout-align="start center">
-              <md-button class="md-raised md-primary" ng-click="ctrl.save()">Save</md-button>
-              <md-button class="md-warn">Delete</md-button>
+              <md-button class="md-raised md-primary" ng-click="ctrl.save()" ng-disabled="pictureForm.$invalid || !ctrl.showCancel">Save</md-button>
+              <md-button class="md-warn" ng-if="!ctrl.showCancel">Delete</md-button>
+              <md-button class="md-warn" ng-click="ctrl.cancel()" ng-if="ctrl.showCancel">Cancel</md-button>
             </md-card-actions>
           </form>
         </md-card-content>

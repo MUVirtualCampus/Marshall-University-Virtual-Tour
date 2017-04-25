@@ -15,4 +15,9 @@ export default class PlaceOfInterestService extends BaseService {
     return this.$http.get('api/placesofinterest/' + id);
   }
 
+  update(data, info) {
+    data.info = info;
+    return super.update(data);
+  }
+
 }

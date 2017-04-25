@@ -10,6 +10,10 @@ class HomeController {
     this.$state.go('home.dashboard');
   }
 
+  showHints(){
+    this.$state.go('home.help');
+  }
+
   showMenu(){
     return this.$state.current.name === 'home.tour' || this.showEditorMenu();
   }
@@ -21,7 +25,6 @@ class HomeController {
   openMenu() {
     this.$scope.$broadcast('open', 'this.$scope');
   }
-
 
 
 }

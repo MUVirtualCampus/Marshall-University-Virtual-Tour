@@ -12,24 +12,14 @@ export default class PictureService extends BaseService {
     //this.baseUrl = $location.$$absUrl
   }
 
-  getPictures(location_id) {
-    let filter = {};
-    filter.location_id = location_id;
+  getPictures(filter) {
 
     return this.$http({
                 method: 'POST',
-                url: '/api/findpictures',
+                url: '/api/pictures',
                 headers: { 'Content-Type' : 'application/json' },
                 data: JSON.stringify(filter)
             });
-  }
-
-  update(picture) {
-    return super.update(picture);
-  }
-
-  create(data) {
-    return super.create(data);
   }
 
 }

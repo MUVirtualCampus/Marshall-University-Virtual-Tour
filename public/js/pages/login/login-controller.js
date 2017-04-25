@@ -5,14 +5,16 @@ class loginController {
     this.$state = $state;
     this.$auth = $auth;
     this.$mdToast = $mdToast;
+    this.email = null;
+    this.password = null;
   }
 
-  login(email,password) {
-    let credentials = {email:email, password:password};
+  login() {
+    let credentials = {email:this.email, password:this.password};
 
     this.$auth.login(credentials).then((data) => {
 
-      this.$state.go('home.editor.pictures', {});
+      this.$state.go('home.editor.locations', {name:'waec'});
     })
     .catch((response) => {
       this.$mdToast.show(

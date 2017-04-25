@@ -1,0 +1,56 @@
+<md-dialog aria-label="modal" style="width:45%">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>Create New Link</h3>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="modal-body">
+      <form name="newLinkForm" novalidate show-validation>
+
+        <div layout-gt-xs="row">
+          <md-input-container flex-gt-sm>
+            <label>Location</label>
+            <md-select ng-model="ctrl.link.location_id" aria-label="linklocation" ng-change="ctrl.switchLocation()">
+              <md-option ng-value="location.location_id" ng-repeat="location in ctrl.locations">{{location.description}}</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-xs="row">
+          <md-input-container>
+            <label>Floor</label>
+            <input type="number" ng-model="ctrl.link.floor" min="1" max="{{ctrl.maxFloor()}}" required>
+          </md-input-container>
+
+          <md-input-container>
+            <label>Heading</label>
+            <input type="number" ng-model="ctrl.link.heading" required>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>From Panorama</label>
+            <input ng-model="ctrl.link.first_picture_id" required>
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>To Panorama</label>
+            <input ng-model="ctrl.link.second_picture_id" required>
+          </md-input-container>
+        </div>
+      </form>
+
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ctrl.save(true)" ng-disabled="newLinkForm.$invalid">Save Link Pair
+      <md-tooltip md-direction="top">Saves this link and it's matching link from the opposite direction</md-tooltip>
+    </md-button>
+    <md-button  ng-click="ctrl.save(false)" ng-disabled="newLinkForm.$invalid">Save Link Only
+      <md-tooltip md-direction="top">Saves only this link. You'll need to add it's matching link manually.</md-tooltip>
+    </md-button>
+    <md-button class="md-warn" ng-click="ctrl.cancel()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

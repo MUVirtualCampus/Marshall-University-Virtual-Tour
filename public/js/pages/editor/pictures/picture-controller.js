@@ -2,15 +2,15 @@ import _ from 'lodash';
 export default class pictureController {
 
   static get $inject(){
-    return ['$scope', '$state', 'locations', 'pictures'];
+    return ['$stateParams', '$state', 'locations', 'pictures'];
   }
 
-  constructor($scope, $state, locations, pictures) {
-    this.$scope = $scope;
+  constructor($stateParams, $state, locations, pictures) {
+    this.$stateParams = $stateParams;
     this.$state = $state;
     this.locations = locations;
     this.allPictures = pictures;
-    this.location = _.find(locations, (location) => {return location.location_id === 1});
+    this.location = _.find(locations, (location) => {return location.name === this.$stateParams.name});
     this.floors = this.initFloors();
     this.floor = this.floors.length > 0 ? this.floors[0] : null;
     this.pictures = null;
@@ -21,11 +21,12 @@ export default class pictureController {
     this.$state.go('home.editor.upload', {params: {location: this.location.name, floor: this.floor}});
   }
 
-  switchLocations(){
-    console.log('Switch!');
+  switchLocations(loc){
+    this.$state.go('home.editor.pictures', {name:loc.name});
   }
 
-  switchFloors() {
+  switchFloors(floor) {
+    this.floor = floor;
     this.findPictures();
   }
 

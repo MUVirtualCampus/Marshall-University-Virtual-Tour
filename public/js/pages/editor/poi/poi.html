@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div layout="column">
+    <h3>Places of Interest Editor</h3>
+    <md-divider></md-divider>
+    <div layout="row" layout-align="space-around center">
+      <h4>Filter By:</h4>
+      <md-menu>
+        <md-button class="md-raised" ng-click="$mdOpenMenu()">Location</md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="location in ctrl.locations">
+            <md-button ng-click="ctrl.switchLocations(location)">
+             {{location.description}}
+           </md-button>
+         </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <div>
+      <ul class="list-group" style="list-style: none;">
+        <li class="list-group" ng-repeat="poi in ctrl.placesOfInterest">
+          <poi-editor poi="poi" locations="ctrl.locations" pictures="ctrl.pictures"></poi-editor>
+        </li>
+      </ul>
+    </div>
+    <div class="fab">
+
+      <md-fab-speed-dial md-open="false" md-direction="up" class="md-scale md-fab-bottom-right" ng-cloak>
+        <md-fab-trigger>
+          <md-button class="md-fab md-primary" aria-label="addPicture">
+            <md-tooltip md-direction="top">Add Place of Interest</md-tooltip>
+            <md-icon md-svg-src="../../../../images/add-white.svg"></md-icon>
+          </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions class="center-text">
+          <md-button aria-label="upload" class="md-raised" ng-click="ctrl.goToUpload()">
+            Upload a New Image
+          </md-button>
+          <md-button aria-label="preexisting" class="md-raised" ng-click="ctrl.openNewPOIModal()">
+            Use a Pre-existing Image
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+
+    </div>
+  </div>
+</div>

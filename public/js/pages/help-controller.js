@@ -1,4 +1,4 @@
-class HomeController {
+class HelpController {
 
   constructor($scope, $state) {
     this.$scope = $scope;
@@ -8,5 +8,5 @@ class HomeController {
 
 }
 
-HomeController.$inject = ['$scope', '$state'];
-export default HomeController;
+HelpController.$inject = ['$scope', '$state'];
+export default HelpController;
